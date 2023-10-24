@@ -1,0 +1,183 @@
+/* 
+	PHP CSS TESt
+*/
+
+.img-productManager {
+	height: 100px;
+	width: auto;
+}
+
+/* END TEST */
+* {
+	/* font-family: 'Be Vietnam Pro', sans-serif !important; */
+	margin: 0;
+	padding: 0;
+	outline: none;
+
+	text-decoration: none;
+}
+
+:root {
+	--main-color: #d3ad7f;
+	--black: #13131a;
+	--border: 0.1rem solid rgba(255, 255, 255, 0.3);
+}
+
+.font-12px {
+	font-size: 14px !important;
+}
+
+html {
+
+	scroll-behavior: smooth;
+}
+
+/* Font Vietnamese */
+.font-vie {
+	font-family: 'Be Vietnam Pro', sans-serif;
+
+}
+
+
+/* Hiệu ứng  */
+
+@keyframes slideInDown {
+	from {
+		transform: translateY(-30px);
+		opacity: 0;
+	}
+
+	to {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+.slideInDown {
+	animation-name: slideInDown;
+	animation-duration: 0.5s;
+}
+
+/* End Hiệu ứng  */
+
+/* CSS element */
+.icon-nav i:hover {
+	color: var(--main-color);
+}
+
+.nav-content {
+	font-weight: 500;
+	color: #000;
+	text-decoration: none;
+	font-size: 18px;
+}
+
+.nav-item {
+	border-bottom: 2px solid transparent;
+	transition: border-bottom 0.3s ease;
+
+}
+
+.nav-item a {
+	transition: color 0.3s ease !important;
+
+}
+
+.nav-item:hover {
+	border-bottom: 2px solid var(--main-color);
+
+}
+
+.nav-item:hover .nav-content {
+	color: var(--main-color);
+	text-decoration: none;
+}
+
+
+
+.form-group label,
+.form-group input {
+	font-size: 14px;
+}
+
+.form-control-sm {
+	height: 30px !important;
+	border: 0 !important;
+	outline: none !important;
+	/* border-color: var(--border) !important; */
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* .form-control-sm:focus {
+
+    box-shadow: none !important;
+}
+
+*/
+
+.input_form {
+	background: #FFFFFF;
+	border: 1px solid #C4C4C4;
+	border-radius: 4px;
+	width: 100%;
+	height: 40px;
+	outline: none;
+	padding: 0 8px;
+}
+
+
+a#login-btn,
+a#register-btn {
+	cursor: pointer;
+	font-size: 24px;
+	color: #000;
+}
+
+.decoration {
+	border-bottom: 2px solid var(--black);
+}
+
+.price {
+	color: #d52220;
+}
+
+.compare-price {
+	text-decoration: line-through;
+}
+
+/* About page */
+
+.slogan-content {
+	width: 40%;
+	position: absolute;
+	right: 20px;
+	bottom: 50px;
+}
+
+.slogan-content p {
+	font-size: 48px;
+	font-style: italic;
+	font-weight: 700;
+	line-height: 113.5%;
+	letter-spacing: 0.02em;
+	margin-bottom: 16px;
+	color: #fff;
+}
+
+.slogan {
+	font-style: italic;
+	font-weight: 700;
+	font-size: 96px;
+	position: absolute;
+	color: #fff;
+}
+
+.slogan-left {
+	top: 0;
+	left: 0;
+}
+
+.slogan-right {
+	bottom: 0;
+	right: 20px;
+}
