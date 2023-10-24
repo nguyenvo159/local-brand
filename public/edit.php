@@ -1,25 +1,24 @@
 <?php
 require_once __DIR__ . '/../bootstrap.php';
-require_once __DIR__ . '/../src/Contact.php';
 
-use CT275\Labs\Contact;
+use CT275\Labs\Product;
 
-$contact = new Contact($PDO);
+$product = new Product($PDO);
 
 $id = isset($_REQUEST['id']) ? filter_var($_REQUEST['id'], FILTER_SANITIZE_NUMBER_INT) : -1;
 
-if ($id < 0 || !($contact->find($id))) {
+if ($id < 0 || !($product->find($id))) {
     redirect('/');
 }
 
 $errors = [];
+
+// Khi Xác nhận Cập nhật
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if ($contact->update($_POST)) {
-        // Cập nhật dữ liệu thành công
+    if ($product->update($_POST)) {
         redirect('/');
     }
-    // Cập nhật dữ liệu không thành công
-    $errors = $contact->getValidationErrors();
+    $errors = $product->getValidationErrors();
 }
 
 include_once __DIR__ . '/../partials/header.php';
@@ -28,14 +27,10 @@ include_once __DIR__ . '/../partials/header.php';
 <body>
     <?php include_once __DIR__ . '/../partials/navbar.php' ?>
 
-    <!-- Main Page Content -->
+    
     <div class="container">
-
-        <?php
-        $subtitle = 'Update your contacts here.';
-        include_once __DIR__ . '/../partials/heading.php';
-        ?>
-
+        <h2 class="mt-3 text-center">Cập nhật Sản Phẩm</h2>
+        <p class="text-center">Vui lòng điền đúng thông tin muốn cập nhật.</p>
         <div class="row">
             <div class="col-12">
 

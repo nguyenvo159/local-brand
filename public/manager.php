@@ -30,11 +30,7 @@ include_once __DIR__ . '/../partials/header.php';
     <!-- Main Page Content -->
     <div class="container">
         <h2 class="mt-3 text-center">Quản lý Sản Phẩm</h2>
-        <div class="row">
-            <div class="col-md-6 offset-md-3 text-center">
-                <p>Dưới đây là toàn bộ sản phẩm.</p>
-            </div>
-        </div>
+        <p class="text-center">Dưới đây là toàn bộ sản phẩm.</p>
         <div class="row">
             <div class="col-sm-12">
 

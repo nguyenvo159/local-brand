@@ -1,18 +1,20 @@
 <?php
 require_once __DIR__ . '/../bootstrap.php';
 
-use CT275\Labs\Contact;
+use CT275\Labs\Product;
 
 $errors = [];
 
+// Khi xác nhận Thêm sản phẩm
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $contact = new Contact($PDO);
-    $contact->fill($_POST);
+
+    $product = new Product($PDO);
+    $product->fill($_POST);
     
-    if ($contact->validate()) {
-        $contact->save() && redirect('/');
+    if ($product->validate()) {
+        $product->save() && redirect('/manager.php');
     }
-    $errors = $contact->getValidationErrors();
+    $errors = $product->getValidationErrors();
 }
 
 include_once __DIR__ . '/../partials/header.php';
@@ -23,49 +25,73 @@ include_once __DIR__ . '/../partials/header.php';
 
     <!-- Main Page Content -->
     <div class="container">
-
-        <?php
-        $subtitle = 'Add your contacts here.';
-        include_once __DIR__ . '/../partials/heading.php';
-        ?>
-
+        <h2 class="mt-3 text-center">Thêm Sản Phẩm</h2>
+        <p class="text-center">Vui lòng nhập đúng các thông tin Sản Phẩm muốn thêm.</p>
         <div class="row">
             <div class="col-12">
 
                 <form method="post" class="col-md-6 offset-md-3">
 
-                    <!-- Name -->
+                    <!-- Tên sản phẩm -->
                     <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" name="name" class="form-control<?= isset($errors['name']) ? ' is-invalid' : '' ?>" maxlen="255" id="name" placeholder="Enter Name" value="<?= isset($_POST['name']) ? $_POST['name'] : '' ?>" />
+                        <label for="productName">Tên Sản Phẩm</label>
+                        <input type="text" name="productName" class="form-control<?= isset($errors['productName']) ? ' is-invalid' : '' ?>" maxlength="255" id="productName" placeholder="Nhập tên sản phẩm" value="<?= isset($_POST['productName']) ? $_POST['productName'] : '' ?>" />
 
-                        <?php if (isset($errors['name'])) : ?>
+                        <?php if (isset($errors['productName'])) : ?>
                             <span class="invalid-feedback">
-                                <strong><?= $errors['name'] ?></strong>
+                                <strong><?= $errors['productName'] ?></strong>
+                            </span>
+                        <?php endif ?>
+                    </div>
+                    
+                    <!-- Loại sản phẩm -->
+                    <div class="form-group">
+                        <label for="categoryID">Category</label>
+                        <select name="categoryID" id="categoryID" class="form-control<?= isset($errors['categoryID']) ? ' is-invalid' : '' ?>">
+                            <option value="1" <?= (isset($_POST['categoryID']) && $_POST['categoryID'] == 1) ? 3 : '' ?>>Áo</option>
+                            <option value="2" <?= (isset($_POST['categoryID']) && $_POST['categoryID'] == 2) ? 3 : '' ?>>Quần</option>
+                            <option value="3" <?= (isset($_POST['categoryID']) && $_POST['categoryID'] == 3) ? 3 : '' ?>>Khác</option>
+                        </select>
+
+                        <?php if (isset($errors['categoryID'])) : ?>
+                            <span class="invalid-feedback">
+                                <strong><?= $errors['categoryID'] ?></strong>
                             </span>
                         <?php endif ?>
                     </div>
 
-                    <!-- Phone -->
+                    <!-- Giá sản phẩm -->
                     <div class="form-group">
-                        <label for="phone">Phone Number</label>
-                        <input type="text" name="phone" class="form-control<?= isset($errors['phone']) ? ' is-invalid' : '' ?>" maxlen="255" id="phone" placeholder="Enter Phone" value="<?= isset($_POST['phone']) ? $_POST['phone'] : '' ?>" />
+                        <label for="price">Giá</label>
+                        <input type="text" name="price" class="form-control<?= isset($errors['price']) ? ' is-invalid' : '' ?>" id="price" placeholder="Enter Price" value="<?= isset($_POST['price']) ? $_POST['price'] : '' ?>" />
 
-                        <?php if (isset($errors['phone'])) : ?>
+                        <?php if (isset($errors['price'])) : ?>
                             <span class="invalid-feedback">
-                                <strong><?= $errors['phone'] ?></strong>
+                                <strong><?= $errors['price'] ?></strong>
+                            </span>
+                        <?php endif ?>
+                    </div>
+                    
+                    <!-- IMG URL sản phẩm -->
+                    <div class="form-group">
+                        <label for="productIMG">Product Image URL</label>
+                        <input type="text" name="productIMG" class="form-control<?= isset($errors['productIMG']) ? ' is-invalid' : '' ?>" id="productIMG" placeholder="Enter Product Image URL" value="<?= isset($_POST['productIMG']) ? $_POST['productIMG'] : '' ?>" />
+
+                        <?php if (isset($errors['productIMG'])) : ?>
+                            <span class="invalid-feedback">
+                                <strong><?= $errors['productIMG'] ?></strong>
                             </span>
                         <?php endif ?>
                     </div>
 
-                    <!-- Notes -->
+                    <!-- Description -->
                     <div class="form-group">
-                        <label for="notes">Notes </label>
-                        <textarea name="notes" id="notes" class="form-control<?= isset($errors['notes']) ? ' is-invalid' : '' ?>" placeholder="Enter notes (maximum character limit: 255)"><?= isset($_POST['notes']) ? $_POST['notes'] : '' ?></textarea>
+                        <label for="description">Mô tả</label>
+                        <textarea name="description" id="description" class="form-control<?= isset($errors['description']) ? ' is-invalid' : '' ?>" placeholder="Enter Description"><?= isset($_POST['description']) ? $_POST['description'] : '' ?></textarea>
 
-                        <?php if (isset($errors['notes'])) : ?>
+                        <?php if (isset($errors['description'])) : ?>
                             <span class="invalid-feedback">
-                                <strong><?= $errors['notes'] ?></strong>
+                                <strong><?= $errors['description'] ?></strong>
                             </span>
                         <?php endif ?>
                     </div>

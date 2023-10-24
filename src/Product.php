@@ -48,11 +48,17 @@ class Product
     {
         $productName = trim($this->productName);
         if (!$productName) {
-            $this->errors['productName'] = 'Invalid product name.';
+            $this->errors['productName'] = 'Tên sản phẩm không hợp lệ.';
         }
 
         if (!is_numeric($this->price) || $this->price < 0) {
-            $this->errors['price'] = 'Invalid price.';
+            $this->errors['price'] = 'Giá không hợp lệ.';
+        }
+
+        $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
+        $fileExtension = strtolower(pathinfo($this->productIMG, PATHINFO_EXTENSION));
+        if (!filter_var($this->productIMG, FILTER_VALIDATE_URL) || !in_array($fileExtension, $allowedExtensions)) {
+            $this->errors['productIMG'] = 'Link ảnh không hợp lệ.';
         }
 
         return empty($this->errors);

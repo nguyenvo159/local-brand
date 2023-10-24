@@ -5,20 +5,20 @@ use CT275\Labs\Product;
 use CT275\Labs\Paginator;
 
 $product = new Product($PDO);
-// $products = $product->all();
+$products = $product->all();
 
-$limit = (isset($_GET['limit']) && is_numeric($_GET['limit'])) ? (int)$_GET['limit'] : 5;
+// $limit = (isset($_GET['limit']) && is_numeric($_GET['limit'])) ? (int)$_GET['limit'] : 5;
 
-$page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
+// $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 
-$paginator = new Paginator(
-    totalRecords: $product->count(),
-    recordsPerPage: $limit,
-    currentPage: $page
-);
-$products = $product->paginate($paginator->recordOffset, $paginator->recordsPerPage);
+// $paginator = new Paginator(
+//     totalRecords: $product->count(),
+//     recordsPerPage: $limit,
+//     currentPage: $page
+// );
+// $products = $product->paginate($paginator->recordOffset, $paginator->recordsPerPage);
 
-$pages = $paginator->getPages(length: 3);
+// $pages = $paginator->getPages(length: 3);
 
 include_once __DIR__ . '/../partials/header.php';
 ?>
@@ -78,7 +78,7 @@ include_once __DIR__ . '/../partials/header.php';
                 <div class="row justify-content-center">
                     <!-- Card -->
                     <?php foreach ($products as $product):  ?>
-                        <div class=" justify-content-center mb-3 col-lg-3 col-6 pr-3">
+                        <div class=" justify-content-center mb-3 col-md-3 col-6 pr-3">
                             <div class=" card">
                                 <img class="card-img-top" src="<?=htmlspecialchars($product->productIMG)?>">
                                 <div class="card-body text-center text-justify">
