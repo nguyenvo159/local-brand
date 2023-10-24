@@ -16,7 +16,7 @@ $errors = [];
 // Khi Xác nhận Cập nhật
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($product->update($_POST)) {
-        redirect('/');
+        redirect('/manager.php');
     }
     $errors = $product->getValidationErrors();
 }
@@ -36,46 +36,76 @@ include_once __DIR__ . '/../partials/header.php';
 
                 <form method="post" class="col-md-6 offset-md-3">
 
-                    <input type="hidden" name="id" value="<?= $contact->getId() ?>">
+                    <input type="hidden" name="id" value="<?= $product->getId() ?>">
 
-                    <!-- Name -->
+                    <!-- Tên sản phẩm -->
                     <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" name="name" class="form-control<?= isset($errors['name']) ? ' is-invalid' : '' ?>" maxlen="255" id="name" placeholder="Enter Name" value="<?= $contact->name ?>" />
+                        <label for="productName">Tên Sản Phẩm</label>
+                        <input type="text" name="productName" class="form-control<?= isset($errors['productName']) ? ' is-invalid' : '' ?>" maxlength="255" 
+                            id="productName" value="<?= htmlspecialchars($product->productName)  ?>" />
 
-                        <?php if (isset($errors['name'])) : ?>
+                        <?php if (isset($errors['productName'])) : ?>
                             <span class="invalid-feedback">
-                                <strong><?= $errors['name'] ?></strong>
+                                <strong><?= $errors['productName'] ?></strong>
                             </span>
                         <?php endif ?>
                     </div>
 
-                    <!-- Phone -->
+                    <!-- Loại sản phẩm -->
                     <div class="form-group">
-                        <label for="phone">Phone Number</label>
-                        <input type="text" name="phone" class="form-control<?= isset($errors['phone']) ? ' is-invalid' : '' ?>" maxlen="255" id="phone" placeholder="Enter Phone" value="<?= $contact->phone ?>" />
+                        <label for="categoryID">Category</label>
+                        <select name="categoryID" id="categoryID" class="form-control<?= isset($errors['categoryID']) ? ' is-invalid' : '' ?>">
+                            <option value="1" <?= ($product->categoryID == 1) ? 'selected' : '' ?>>Áo</option>
+                            <option value="2" <?= ($product->categoryID == 2) ? 'selected' : '' ?>>Quần</option>
+                            <option value="3" <?= ($product->categoryID == 3) ? 'selected' : '' ?>>Khác</option>
+                        </select>
 
-                        <?php if (isset($errors['phone'])) : ?>
+                        <?php if (isset($errors['categoryID'])) : ?>
                             <span class="invalid-feedback">
-                                <strong><?= $errors['phone'] ?></strong>
+                                <strong><?= $errors['categoryID'] ?></strong>
                             </span>
                         <?php endif ?>
                     </div>
 
-                    <!-- Notes -->
+                    <!-- Giá sản phẩm -->
                     <div class="form-group">
-                        <label for="notes">Notes </label>
-                        <textarea name="notes" id="notes" class="form-control<?= isset($errors['notes']) ? ' is-invalid' : '' ?>" placeholder="Enter notes (maximum character limit: 255)"><?= $contact->notes ?></textarea>
+                        <label for="price">Giá</label>
+                        <input type="text" name="price" class="form-control<?= isset($errors['price']) ? ' is-invalid' : '' ?>" id="price" 
+                            value="<?= htmlspecialchars($product->price) ?>" />
 
-                        <?php if (isset($errors['notes'])) : ?>
+                        <?php if (isset($errors['price'])) : ?>
                             <span class="invalid-feedback">
-                                <strong><?= $errors['notes'] ?></strong>
+                                <strong><?= $errors['price'] ?></strong>
+                            </span>
+                        <?php endif ?>
+                    </div>
+                    
+                    <!-- IMG URL sản phẩm -->
+                    <div class="form-group">
+                        <label for="productIMG">Product Image URL</label>
+                        <input type="text" name="productIMG" class="form-control<?= isset($errors['productIMG']) ? ' is-invalid' : '' ?>" id="productIMG" 
+                            value="<?= htmlspecialchars($product->productIMG) ?>"/>
+
+                        <?php if (isset($errors['productIMG'])) : ?>
+                            <span class="invalid-feedback">
+                                <strong><?= $errors['productIMG'] ?></strong>
                             </span>
                         <?php endif ?>
                     </div>
 
+                    <!-- Description -->
+                    <div class="form-group">
+                        <label for="description">Mô tả</label>
+                        <textarea name="description" id="description" class="form-control<?= isset($errors['description']) ? ' is-invalid' : '' ?>"><?= htmlspecialchars($product->description) ?></textarea>
+
+                        <?php if (isset($errors['description'])) : ?>
+                            <span class="invalid-feedback">
+                                <strong><?= $errors['description'] ?></strong>
+                            </span>
+                        <?php endif ?>
+                    </div>
                     <!-- Submit -->
-                    <button type="submit" name="submit" class="btn btn-primary">Update Contact</button>
+                    <button type="submit" name="submit" class="btn btn-primary">Cập Nhập Sản Phẩm</button>
                 </form>
 
             </div>

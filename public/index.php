@@ -75,12 +75,12 @@ include_once __DIR__ . '/../partials/header.php';
             <!-- Áo -->
             <div id="shirt" class="mb-5">
                 <h1 class="mb-4">Áo</h1>
-                <div class="row justify-content-center">
+                <div class="row justify-content-start">
                     <!-- Card -->
                     <?php foreach ($products as $product):  ?>
-                        <div class=" justify-content-center mb-3 col-md-3 col-6 pr-3">
+                        <div class=" justify-content-center mb-3 col-lg-3 col-md-4 col-6 pr-3">
                             <div class=" card">
-                                <img class="card-img-top" src="<?=htmlspecialchars($product->productIMG)?>">
+                                <img class="mt-3 card-img-top img-fluid fixed-height-img" src="<?=htmlspecialchars($product->productIMG)?>">
                                 <div class="card-body text-center text-justify">
                                     <h5 class="card-title"><?=htmlspecialchars($product->productName)?></h5>
                                     <div class="row justify-content-around">

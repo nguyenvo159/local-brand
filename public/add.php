@@ -35,7 +35,8 @@ include_once __DIR__ . '/../partials/header.php';
                     <!-- Tên sản phẩm -->
                     <div class="form-group">
                         <label for="productName">Tên Sản Phẩm</label>
-                        <input type="text" name="productName" class="form-control<?= isset($errors['productName']) ? ' is-invalid' : '' ?>" maxlength="255" id="productName" placeholder="Nhập tên sản phẩm" value="<?= isset($_POST['productName']) ? $_POST['productName'] : '' ?>" />
+                        <input type="text" name="productName" id="productName" class="form-control<?= isset($errors['productName']) ? ' is-invalid' : '' ?>" maxlength="255"  
+                            placeholder="Nhập tên sản phẩm" value="<?= isset($_POST['productName']) ? $_POST['productName'] : '' ?>" />
 
                         <?php if (isset($errors['productName'])) : ?>
                             <span class="invalid-feedback">
@@ -63,7 +64,8 @@ include_once __DIR__ . '/../partials/header.php';
                     <!-- Giá sản phẩm -->
                     <div class="form-group">
                         <label for="price">Giá</label>
-                        <input type="text" name="price" class="form-control<?= isset($errors['price']) ? ' is-invalid' : '' ?>" id="price" placeholder="Enter Price" value="<?= isset($_POST['price']) ? $_POST['price'] : '' ?>" />
+                        <input type="text" name="price" id="price" class="form-control<?= isset($errors['price']) ? ' is-invalid' : '' ?>"  
+                            placeholder="Nhập giá" value="<?= isset($_POST['price']) ? $_POST['price'] : '' ?>" />
 
                         <?php if (isset($errors['price'])) : ?>
                             <span class="invalid-feedback">
@@ -75,7 +77,8 @@ include_once __DIR__ . '/../partials/header.php';
                     <!-- IMG URL sản phẩm -->
                     <div class="form-group">
                         <label for="productIMG">Product Image URL</label>
-                        <input type="text" name="productIMG" class="form-control<?= isset($errors['productIMG']) ? ' is-invalid' : '' ?>" id="productIMG" placeholder="Enter Product Image URL" value="<?= isset($_POST['productIMG']) ? $_POST['productIMG'] : '' ?>" />
+                        <input type="text" name="productIMG" id="productIMG" class="form-control<?= isset($errors['productIMG']) ? ' is-invalid' : '' ?>" 
+                             placeholder="Nhập địa chỉ ảnh" value="<?= isset($_POST['productIMG']) ? $_POST['productIMG'] : '' ?>" />
 
                         <?php if (isset($errors['productIMG'])) : ?>
                             <span class="invalid-feedback">
@@ -87,7 +90,8 @@ include_once __DIR__ . '/../partials/header.php';
                     <!-- Description -->
                     <div class="form-group">
                         <label for="description">Mô tả</label>
-                        <textarea name="description" id="description" class="form-control<?= isset($errors['description']) ? ' is-invalid' : '' ?>" placeholder="Enter Description"><?= isset($_POST['description']) ? $_POST['description'] : '' ?></textarea>
+                        <textarea name="description" id="description" class="form-control<?= isset($errors['description']) ? ' is-invalid' : '' ?>" 
+                            placeholder="Không bắt buộc..."><?= isset($_POST['description']) ? $_POST['description'] : '' ?></textarea>
 
                         <?php if (isset($errors['description'])) : ?>
                             <span class="invalid-feedback">

@@ -1,10 +1,9 @@
 /* 
 	PHP CSS TESt
 */
-
-.img-productManager {
-	height: 100px;
-	width: auto;
+.fixed-height-img {
+	height: 200px;
+	object-fit: cover;
 }
 
 /* END TEST */

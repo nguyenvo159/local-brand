@@ -27,7 +27,7 @@ include_once("../partials/header.php")
             <div class="row justify-content-center align-items-center">
                 <div class="p-0 col-md-6 col-12">
                     <h1>Amiri - Fashion in Futher</h1>
-                    <p class="text-justify">Amiri - Một Thương hiệu Thời trang với phong cách giản dị. Với sứ mệnh cung
+                    <p class="text-justify"><br> Amiri - Một Thương hiệu Thời trang với phong cách giản dị. Với sứ mệnh cung
                         cấp cho khách hàng
                         những sản phẩm chất lượng cao với giá cả vô cùng hợp lý, Amiri luôn tìm kiếm những nhân
                         viên tài năng và đam mê thời trang để đưa thương hiệu của mình đến với khách hàng trên toàn
@@ -54,14 +54,14 @@ include_once("../partials/header.php")
                 <div class="p-0 col-md-6 col-12">
                     <div class="row">
                         <div class="p-0 col-sm-6 d-flex justify-content-end align-items-center">
-                            <img class="mt-3" src="https://www.fourkids.com/cdn/shop/files/nm_4568144_100106_b.png"
+                            <img class="mt-3" src="https://amiri.com/cdn/shop/files/Bucket_AW23-Accessories-5.jpg"
                                 alt="" style="width: 180px; height: 180px;">
                         </div>
 
-                        <div class="p-0 col-sm-6 text-center">
-                            <img class="mt-3" src="https://www.fourkids.com/cdn/shop/files/nm_4568144_100106_b.png"
+                        <div class="p-0 pl-3 col-sm-6 text-start">
+                            <img class="mt-3" src="https://amiri.com/cdn/shop/files/Bucket_AW23-Pants-2_1.jpg"
                                 alt="" style="width: 180px; height: 180px;">
-                            <img class="mt-3" src="https://www.fourkids.com/cdn/shop/files/nm_4568144_100106_b.png"
+                            <img class="mt-3" src="https://amiri.com/cdn/shop/files/Bucket_AW23-Footwear-4_1_7b399543-2c5e-4335-8dbb-a8c6f712e0c2.webp"
                                 alt="" style="width: 180px; height: 180px;">
                         </div>
                     </div>
