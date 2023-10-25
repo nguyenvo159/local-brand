@@ -31,86 +31,83 @@ include_once __DIR__ . '/../partials/header.php';
     <div class="container">
         <h2 class="mt-3 text-center">Cập nhật Sản Phẩm</h2>
         <p class="text-center">Vui lòng điền đúng thông tin muốn cập nhật.</p>
-        <div class="row">
-            <div class="col-12">
+        <div class="container">
+            <div class="row justify-content-center">
+                    <form method="post" class="col-lg-6 col-8">
 
-                <form method="post" class="col-md-6 offset-md-3">
+                        <input type="hidden" name="id" value="<?= $product->getId() ?>">
 
-                    <input type="hidden" name="id" value="<?= $product->getId() ?>">
+                        <!-- Tên sản phẩm -->
+                        <div class="form-group">
+                            <label for="productName">Tên Sản Phẩm</label>
+                            <input type="text" name="productName" class="form-control<?= isset($errors['productName']) ? ' is-invalid' : '' ?>" maxlength="255" 
+                                id="productName" value="<?= htmlspecialchars($product->productName)  ?>" />
 
-                    <!-- Tên sản phẩm -->
-                    <div class="form-group">
-                        <label for="productName">Tên Sản Phẩm</label>
-                        <input type="text" name="productName" class="form-control<?= isset($errors['productName']) ? ' is-invalid' : '' ?>" maxlength="255" 
-                            id="productName" value="<?= htmlspecialchars($product->productName)  ?>" />
+                            <?php if (isset($errors['productName'])) : ?>
+                                <span class="invalid-feedback">
+                                    <strong><?= $errors['productName'] ?></strong>
+                                </span>
+                            <?php endif ?>
+                        </div>
 
-                        <?php if (isset($errors['productName'])) : ?>
-                            <span class="invalid-feedback">
-                                <strong><?= $errors['productName'] ?></strong>
-                            </span>
-                        <?php endif ?>
-                    </div>
+                        <!-- Loại sản phẩm -->
+                        <div class="form-group">
+                            <label for="categoryID">Category</label>
+                            <select name="categoryID" id="categoryID" class="form-control<?= isset($errors['categoryID']) ? ' is-invalid' : '' ?>">
+                                <option value="1" <?= ($product->categoryID == 1) ? 'selected' : '' ?>>Áo</option>
+                                <option value="2" <?= ($product->categoryID == 2) ? 'selected' : '' ?>>Quần</option>
+                                <option value="3" <?= ($product->categoryID == 3) ? 'selected' : '' ?>>Khác</option>
+                            </select>
 
-                    <!-- Loại sản phẩm -->
-                    <div class="form-group">
-                        <label for="categoryID">Category</label>
-                        <select name="categoryID" id="categoryID" class="form-control<?= isset($errors['categoryID']) ? ' is-invalid' : '' ?>">
-                            <option value="1" <?= ($product->categoryID == 1) ? 'selected' : '' ?>>Áo</option>
-                            <option value="2" <?= ($product->categoryID == 2) ? 'selected' : '' ?>>Quần</option>
-                            <option value="3" <?= ($product->categoryID == 3) ? 'selected' : '' ?>>Khác</option>
-                        </select>
+                            <?php if (isset($errors['categoryID'])) : ?>
+                                <span class="invalid-feedback">
+                                    <strong><?= $errors['categoryID'] ?></strong>
+                                </span>
+                            <?php endif ?>
+                        </div>
 
-                        <?php if (isset($errors['categoryID'])) : ?>
-                            <span class="invalid-feedback">
-                                <strong><?= $errors['categoryID'] ?></strong>
-                            </span>
-                        <?php endif ?>
-                    </div>
+                        <!-- Giá sản phẩm -->
+                        <div class="form-group">
+                            <label for="price">Giá</label>
+                            <input type="text" name="price" class="form-control<?= isset($errors['price']) ? ' is-invalid' : '' ?>" id="price" 
+                                value="<?= htmlspecialchars($product->price) ?>" />
 
-                    <!-- Giá sản phẩm -->
-                    <div class="form-group">
-                        <label for="price">Giá</label>
-                        <input type="text" name="price" class="form-control<?= isset($errors['price']) ? ' is-invalid' : '' ?>" id="price" 
-                            value="<?= htmlspecialchars($product->price) ?>" />
+                            <?php if (isset($errors['price'])) : ?>
+                                <span class="invalid-feedback">
+                                    <strong><?= $errors['price'] ?></strong>
+                                </span>
+                            <?php endif ?>
+                        </div>
+                        
+                        <!-- IMG URL sản phẩm -->
+                        <div class="form-group">
+                            <label for="productIMG">Product Image URL</label>
+                            <input type="text" name="productIMG" class="form-control<?= isset($errors['productIMG']) ? ' is-invalid' : '' ?>" id="productIMG" 
+                                value="<?= htmlspecialchars($product->productIMG) ?>"/>
 
-                        <?php if (isset($errors['price'])) : ?>
-                            <span class="invalid-feedback">
-                                <strong><?= $errors['price'] ?></strong>
-                            </span>
-                        <?php endif ?>
-                    </div>
-                    
-                    <!-- IMG URL sản phẩm -->
-                    <div class="form-group">
-                        <label for="productIMG">Product Image URL</label>
-                        <input type="text" name="productIMG" class="form-control<?= isset($errors['productIMG']) ? ' is-invalid' : '' ?>" id="productIMG" 
-                            value="<?= htmlspecialchars($product->productIMG) ?>"/>
+                            <?php if (isset($errors['productIMG'])) : ?>
+                                <span class="invalid-feedback">
+                                    <strong><?= $errors['productIMG'] ?></strong>
+                                </span>
+                            <?php endif ?>
+                        </div>
 
-                        <?php if (isset($errors['productIMG'])) : ?>
-                            <span class="invalid-feedback">
-                                <strong><?= $errors['productIMG'] ?></strong>
-                            </span>
-                        <?php endif ?>
-                    </div>
+                        <!-- Description -->
+                        <div class="form-group">
+                            <label for="description">Mô tả</label>
+                            <textarea name="description" id="description" class="form-control<?= isset($errors['description']) ? ' is-invalid' : '' ?>"><?= htmlspecialchars($product->description) ?></textarea>
 
-                    <!-- Description -->
-                    <div class="form-group">
-                        <label for="description">Mô tả</label>
-                        <textarea name="description" id="description" class="form-control<?= isset($errors['description']) ? ' is-invalid' : '' ?>"><?= htmlspecialchars($product->description) ?></textarea>
-
-                        <?php if (isset($errors['description'])) : ?>
-                            <span class="invalid-feedback">
-                                <strong><?= $errors['description'] ?></strong>
-                            </span>
-                        <?php endif ?>
-                    </div>
-                    <!-- Submit -->
-                    <button type="submit" name="submit" class="btn btn-primary">Cập Nhập Sản Phẩm</button>
-                </form>
-
+                            <?php if (isset($errors['description'])) : ?>
+                                <span class="invalid-feedback">
+                                    <strong><?= $errors['description'] ?></strong>
+                                </span>
+                            <?php endif ?>
+                        </div>
+                        <!-- Submit -->
+                        <button type="submit" name="submit" class="btn btn-primary">Cập Nhập Sản Phẩm</button>
+                    </form>
             </div>
         </div>
-
     </div>
 
     <?php include_once __DIR__ . '/../partials/footer.php' ?>

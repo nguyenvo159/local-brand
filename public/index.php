@@ -79,13 +79,18 @@ include_once __DIR__ . '/../partials/header.php';
                     <!-- Card -->
                     <?php foreach ($products as $product):  ?>
                         <div class=" justify-content-center mb-3 col-lg-3 col-md-4 col-6 pr-3">
-                            <div class=" card">
-                                <img class="mt-3 card-img-top img-fluid fixed-height-img" src="<?=htmlspecialchars($product->productIMG)?>">
-                                <div class="card-body text-center text-justify">
-                                    <h5 class="card-title"><?=htmlspecialchars($product->productName)?></h5>
-                                    <div class="row justify-content-around">
-                                            <span class="price">$<?=htmlspecialchars($product->price)?></span>
-                                            <span class="compare-price">350.000đ</span>
+                            <div class="card-container">
+                                <div class=" card">
+                                    <img class="card-img-top " style="height: 240px; width: auto; object-fit: contain;" src="<?=htmlspecialchars($product->productIMG)?>">
+                                    <a class="card-overlay">
+                                        <i id="icon-cardplus" class="fa-solid fa-cart-plus"></i>
+                                    </a>
+                                    <div class="card-body text-center text-justify">
+                                        <h5 class="card-title"><?=htmlspecialchars($product->productName)?></h5>
+                                        <div class="row justify-content-around">
+                                                <span class="price">$<?=htmlspecialchars($product->price)?></span>
+                                                <span class="compare-price">350.000đ</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

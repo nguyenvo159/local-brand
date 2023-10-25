@@ -118,15 +118,15 @@ include_once __DIR__ . '/../partials/header.php';
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Confirmation</h4>
+                    <h4 class="modal-title">Vui lòng xác nhận</h4>
                     <button type="button" class="close" data-dismiss="modal">
                         <span>&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">Do you want to delete this contact?</div>
+                <div class="modal-body">Bạn có thực sự muốn xóa sản phẩm?</div>
                 <div class="modal-footer">
-                    <button type="button" data-dismiss="modal" class="btn btn-danger" id="delete">Delete</button>
-                    <button type="button" data-dismiss="modal" class="btn btn-default">Cancel</button>
+                    <button type="button" data-dismiss="modal" class="btn btn-danger" id="delete">Xóa</button>
+                    <button type="button" data-dismiss="modal" class="btn btn-default">Hủy</button>
                 </div>
             </div>
         </div>
@@ -142,7 +142,7 @@ include_once __DIR__ . '/../partials/header.php';
                 const nameTd = $(this).closest('tr').find('td:eq(1)');
                 
                 if (nameTd.length > 0) {
-                    $('.modal-body').html(`Do you want to delete "${nameTd.text()}"?`);
+                    $('.modal-body').html(`Bạn có thực sự muốn xóa "${nameTd.text()}"?`);
                 }
                 $('#delete-confirm').modal({
                     backdrop: 'static', keyboard: false

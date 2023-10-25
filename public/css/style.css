@@ -3,7 +3,7 @@
 */
 .fixed-height-img {
 	height: 200px;
-	object-fit: cover;
+
 }
 
 /* END TEST */
@@ -180,4 +180,48 @@ a#register-btn {
 .slogan-right {
 	bottom: 0;
 	right: 20px;
+}
+
+
+/* Card */
+
+.card-container {
+	position: relative;
+	overflow: hidden;
+}
+
+.card {
+	position: relative;
+	transition: transform 0.2s;
+	overflow: hidden;
+	cursor: pointer;
+}
+
+.card:hover img.card-img-top {
+	transform: scale(1.1);
+}
+
+.card-overlay {
+	text-decoration: none;
+	position: absolute;
+	top: 2%;
+	right: -16%;
+	transition: right 0.4s;
+}
+
+.card:hover .card-overlay {
+	top: 2%;
+	right: 2%;
+}
+
+.card-overlay:hover i.fa-cart-plus {
+	color: blue;
+}
+
+.card-overlay i {
+	padding: 5px;
+	border-radius: 50%;
+	background-color: #fff;
+	color: rgba(0, 0, 0, 0.7);
+	font-size: 24px;
 }
