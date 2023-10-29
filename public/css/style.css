@@ -1,15 +1,4 @@
-/* 
-	PHP CSS TESt
-*/
-.fixed-height-img {
-	height: 200px;
-
-}
-
-/* END TEST */
-
 * {
-	/* font-family: 'Be Vietnam Pro', sans-serif !important; */
 	margin: 0;
 	padding: 0;
 	outline: none;
@@ -38,6 +27,10 @@ html {
 
 }
 
+.fixed-height-img {
+	height: 200px;
+
+}
 
 /* Hiệu ứng  */
 

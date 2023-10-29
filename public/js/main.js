@@ -57,4 +57,75 @@ $(document).ready(function () {
     $('#register-switch').click(function () {
         switchToRegister();
     });
+
+    // // Xử lý lỗi input Đăng Ký
+    // $("#firstNameError").hide();
+    // $("lastNameError").hide();
+    // $("email-registerError").hide();
+    // $("password-registerError").hide();
+    // $("repassword-registerError").hide();
+
+    // $("#registerForm").submit(function (event) {
+    //     alert("log");
+    //     var firstName = $("#firstName").val();
+    //     var firstNameError = $("#firstNameError");
+
+    //     var lastName = $("lastName").val();
+    //     var lastNameError = $("lastNameError");
+
+    //     var emailRegister = $("email-register").val();
+    //     var mailRegisterError = $("email-registerError");
+
+    //     var passwordRegister = $("password-register").val();
+    //     var passwordRegisterError = $("password-registerError");
+
+    //     var repasswordRegister = $("repassword-register").val();
+    //     var repasswordRegisterError = $("repassword-registerError");
+
+
+
+
+    //     firstNameError.toggle(!isValidFirstName(firstName));
+    //     lastNameError.toggle(!isValidLastName(lastName));
+    //     mailRegisterError.toggle(!isValidEmailRegister(emailRegister));
+    //     passwordRegisterError.toggle(!isValidPasswordRegister(passwordRegister));
+    //     repasswordRegisterError.toggle(!isValidRePasswordRegister(repasswordRegister, passwordRegister));
+
+    //     if (!isValidFirstName(firstName) || !isValidLastName(lastName) || !isValidEmailRegister(emailRegister)
+    //         || !isValidPasswordRegister(passwordRegister) || !isValidRePasswordRegister(repasswordRegister, passwordRegister)) {
+    //         event.preventDefault();
+    //     }
+    // });
+
+    // function isValidFirstName(firstName) {
+    //     return firstName.length >= 2;
+    // }
+    // function isValidLastName(lastName) {
+    //     return lastName.length >= 2;
+    // }
+    // function isValidEmailRegister(emailRegister) {
+    //     var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    //     return emailRegex.test(emailRegister);
+    // }
+    // function isValidPasswordRegister(passwordRegister) {
+    //     return passwordRegister.length >= 6;
+    // }
+    // function isValidRePasswordRegister(repasswordRegister, passwordRegister) {
+    //     if (passwordRegister.length >= 6 && repasswordRegister == passwordRegister) {
+    //         return true;
+    //     }
+    //     return false;
+    // }
+
+    $('#repassword-register').on('input', function () {
+        var password = $('#password-register').val();
+        var repassword = $(this).val();
+
+        if (password !== repassword) {
+            $('#repassword-registerError').html('<strong>Nhập lại mật khẩu sai</strong>');
+        } else {
+            $('#repassword-registerError').html('');
+        }
+    });
+
 });

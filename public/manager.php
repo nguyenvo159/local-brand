@@ -20,7 +20,7 @@ $products = $product->paginate($paginator->recordOffset, $paginator->recordsPerP
 
 $pages = $paginator->getPages(length: 3);
 
-include_once __DIR__ . '/../partials/header.php';
+include_once __DIR__ . '/../partials/head.php';
 ?>
 
 <body>

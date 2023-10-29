@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $errors = $product->getValidationErrors();
 }
 
-include_once __DIR__ . '/../partials/header.php';
+include_once __DIR__ . '/../partials/head.php';
 ?>
 
 <body>

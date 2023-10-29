@@ -1,3 +1,5 @@
+
+
 <header class="position-relative">
     <nav class="border-bottom navbar navbar-expand-md navbar-light bg-light position-relative">
         <a class="p-3 navbar-brand mr-auto d-flex align-items-center" href="/">
@@ -38,8 +40,39 @@
                         class="fa-solid fa-magnifying-glass fa-lg"></i></a>
                 <a class="ml-3 text-dark" href="#">
                     <i class="fa-solid fa-cart-shopping fa-lg"></i></a>
-                <a class="ml-3 text-dark" href="#" type="button" data-toggle="modal" data-target="#loginModal">
-                    <i class="fa-solid fa-user fa-lg"></i></a>
+                <!-- <a class="ml-3 text-dark" href="#" type="button" data-toggle="modal" data-target="#loginModal">
+                    <i class="fa-solid fa-user fa-lg"></i></a> -->
+                    <?php
+                    use CT275\Labs\UserRepository;
+                        session_start();
+
+                        // Kiểm tra xem người dùng đã đăng nhập hay chưa
+                        if (isset($_SESSION['user_id'])) {
+                            $userId = $_SESSION['user_id'];
+                            $user = $userRepository->findById($userId);
+
+                            // Hiển thị tên người dùng
+                            echo '<div class="">
+                                    <a class="ml-3 text-dark dropdown-toggle" href="#" role="button" id="userDropdown" data-toggle="dropdown" 
+                                    aria-haspopup="true" aria-expanded="false">' . $user->getLastName() . '</a>
+                                    <div class="dropdown-menu mt-4 p-0 rounded-0 position-absolute" aria-labelledby="userDropdown" style="right: -10%; width:auto;">';
+                            
+                            // Kiểm tra nếu userID là 1 thì hiển thị tùy chọn "Quản lý"
+                            if ($user->getId() == 1) {
+                                echo '<a class="dropdown-item" href="/manager.php">Quản lý</a>
+                                        <div class="dropdown-divider m-0"></div>';
+                            }
+                            
+                            echo '<a class="dropdown-item" href="/auth/logout.php">Logout</a>
+                                    </div>
+                                    </div>';
+                        } else {
+                            // Chưa đăng nhập, hiển thị icon "fa-user"
+                            echo '<a class="ml-3 text-dark" href="/auth/login.php" type="button" >
+                                    <i class="fa-solid fa-user fa-lg"></i>
+                                </a>';
+                        }
+                    ?>
             </div>
             <!-- bars -->
             <button class="navbar-toggler ml-3" type="button" data-toggle="collapse"
@@ -62,95 +95,4 @@
             </div>
         </form>
     </div>
-    <div class="font-vie modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content p-3">
-                <div class="modal-header mt-3 mb-3 border-0 text-center position-relative d-flex justify-content-center align-items-center">
-                    <img src="https://vectorseek.com/wp-content/uploads/2023/07/Amiri-Logo-Vector.svg-.png" width=auto height="50" class="d-inline-block align-top" alt="Logo">
-                    <button type="button" class="close position-absolute" data-dismiss="modal" aria-label="Close"
-                        style="right:10px; top:10px">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <!-- Modal body -->
-                <div class="modal-body pb-0">
-                    <div class="border-bottom">
-                        <ul class="mb-0 row justify-content-around list-unstyled ">
-                            <li class="pb-2 decoration"><a id="login-btn"
-                                    class="text-decoration-none font-weight-bold">ĐĂNG
-                                    NHẬP</a></li>
-                            <li class="pb-2"><a id="register-btn" class="text-decoration-none">ĐĂNG KÝ</a></li>
-                        </ul>
-                    </div>
-                    <div class="container-fluid mt-3">
-                        <div id="login-form">
-                            <form>
-                                <div class="form-group">
-                                    <label for="email-login">Email</label>
-                                    <input required type="email" class="input_form" id="email-login"
-                                        placeholder="Nhập email">
-                                </div>
-                                <div class="form-group">
-                                    <label for="password-login">Mật Khẩu</label>
-                                    <input required type="password" class="input_form" id="password-login"
-                                        placeholder="Nhập mật khẩu">
-                                </div>
-                                <!-- <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="remember_me">
-                                <label class="form-check-label" for="remember_me">Ghi nhớ tôi</label>
-                                </div> -->
-                                <button type="submit" class="mt-2 mb-2 w-100 btn btn-dark">Đăng nhập</button>
-                                <br>
-                                <br>
-                                <a href="">Quên mật khẩu?</a>
-                                <p class="mb-0">Bạn chưa có tài khoản? Đăng ký <a id="register-switch" href="#">tại
-                                        đây.</a>
-                                </p>
-                            </form>
-                        </div>
-                        <div id="register-form" class="hidden-content">
-                            <form>
-                                <div class="form-group">
-                                    <label for="fullname">Họ và tên</label>
-                                    <input required type="text" class="input_form" id="fullname"
-                                        placeholder="Nhập họ và tên">
-                                </div>
-                                <div class="form-group">
-                                    <label for="email-register">Email</label>
-                                    <input required type="email" class="input_form" id="email-register"
-                                        placeholder="Nhập email">
-                                </div>
-                                <div class="form-group">
-                                    <label for="birthday">Ngày sinh</label>
-                                    <input required type="date" class="input_form" id="birthday"
-                                        placeholder="Ngày/Tháng/Năm">
-                                </div>
-                                <div class="form-group">
-                                    <label for="phone">Số điện thoại</label>
-                                    <input required type="tel" class="input_form" id="phone"
-                                        placeholder="Số điện thoại">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="password-register">Mật Khẩu</label>
-                                    <input required type="password" class="input_form" id="password-register"
-                                        placeholder="Nhập mật khẩu">
-                                </div>
-                                <div class="form-group">
-                                    <label for="repassword-register">Nhập lại mật khẩu</label>
-                                    <input required type="password" class="input_form" id="repassword-register"
-                                        placeholder="Nhập lại mật khẩu">
-                                </div>
-
-                                <button type="submit" class="mt-2 mb-2 w-100 btn btn-dark">Đăng ký</button>
-                                <br> <br>
-                                <p>Bạn đã có tài khoản? Đăng nhập <a id="login-switch" href="#">tại đây</a></p>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</header
+</header>

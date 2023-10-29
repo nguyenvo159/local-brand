@@ -83,4 +83,15 @@
         crossorigin="anonymous">
     </script>
 
+<script>
+    $(document).ready(function () {
+        // Xử lý hiển thị thông báo lỗi đăng nhập
+        <?php if (isset($_SESSION['login_error'])): ?>
+            $('#loginError').removeClass('d-none').html('<strong><?php echo $_SESSION['login_error']; ?></strong>');
+        <?php
+            // Xóa thông báo lỗi từ session
+            unset($_SESSION['login_error']);
+        endif; ?>
+    });
+</script>
     <script src="/js/main.js"></script>
