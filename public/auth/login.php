@@ -35,11 +35,13 @@ include_once __DIR__ . '/../../partials/head.php';
                 <form  method="post">
                     <div class="form-group">
                         <label for="email-login">Email</label>
-                        <input required type="email" class="input_form" id="email-login" name="email" placeholder="Nhập email">
+                        <input required type="email" class="input_form" id="email-login" name="email" placeholder="Nhập email"
+                            value="<?php echo isset($email) ? $email : ''; ?>">
                     </div>
                     <div class="form-group">
                         <label for="password-login">Mật Khẩu</label>
-                        <input required type="password" class="input_form" id="password-login" name="password" placeholder="Nhập mật khẩu">
+                        <input required type="password" class="input_form" id="password-login" name="password" placeholder="Nhập mật khẩu"
+                            value="<?php echo isset($password) ? $password : ''; ?>">
                     </div>
                     <span id="loginError" class="text-warning">
                         <?php echo isset($loginError) ? $loginError : ''; ?>

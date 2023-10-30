@@ -22,7 +22,7 @@ class UserRepository
         $user = $statement->fetch(PDO::FETCH_ASSOC);
 
         if ($user) {
-            return new User($user['userID'], $user['firstName'], $user['lastName'], $user['email'], $user['pass'], $user['phone']);
+            return new User($user['userID'], $user['firstName'], $user['lastName'], $user['email'], $user['password'], $user['phone']);
         }
 
         return null;
@@ -36,7 +36,7 @@ class UserRepository
         $user = $statement->fetch(PDO::FETCH_ASSOC);
 
         if ($user) {
-            return new User($user['userID'], $user['firstName'], $user['lastName'], $user['email'], $user['pass'], $user['phone']);
+            return new User($user['userID'], $user['firstName'], $user['lastName'], $user['email'], $user['password'], $user['phone']);
         }
 
         return null;
@@ -44,7 +44,7 @@ class UserRepository
 
     public function addUser(string $firstName, string $lastName, string $email, string $password, string $phone): bool
     {
-        $statement = $this->pdo->prepare("INSERT INTO users (firstName, lastName, email, pass, phone) VALUES (?, ?, ?, ?, ?)");
+        $statement = $this->pdo->prepare("INSERT INTO users (firstName, lastName, email, password, phone) VALUES (?, ?, ?, ?, ?)");
         return $statement->execute([$firstName, $lastName, $email, $password, $phone]);
     }
 

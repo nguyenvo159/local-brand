@@ -1,4 +1,9 @@
-
+<?php
+use CT275\Labs\UserRepository;
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+?>
 
 <header class="position-relative">
     <nav class="border-bottom navbar navbar-expand-md navbar-light bg-light position-relative">
@@ -20,14 +25,15 @@
                     </a>
                     <div class="border-0 pt-3 pb-0 m-0 rounded-0 dropdown-menu bg-light">
                         <div class="m-0 dropdown-divider"></div>
-                        <a class="p-2 dropdown-item" href="product/product_shirts.php">Áo</a>
-                        <a class="p-2 dropdown-item" href="product/product_pants.php">Quần</a>
-                        <a class="p-2 dropdown-item" href="product/product_others.php">Phụ kiện</a>
+                        <a class="p-2 dropdown-item" href="/product.php">Tất cả</a>
+                        <a class="p-2 dropdown-item" href="/product/shirts.php">Áo</a>
+                        <a class="p-2 dropdown-item" href="/product/pants.php">Quần</a>
+                        <a class="p-2 dropdown-item" href="/product/others.php">Khác</a>
                         <div class="m-0 dropdown-divider"></div>
                     </div>
                 </li>
                 <li class="p-2 mr-3 ml-3 nav-item">
-                    <a class="nav-content" href="about.php">About</a>
+                    <a class="nav-content" href="/about.php">About</a>
                 </li>
             </ul>
         </div>
@@ -38,14 +44,11 @@
             <div class=" d-flex">
                 <a id="search-btn" class="ml-3 text-dark" href="#"><i
                         class="fa-solid fa-magnifying-glass fa-lg"></i></a>
-                <a class="ml-3 text-dark" href="#">
+                <a class="ml-3 text-dark" href="/cart.php">
                     <i class="fa-solid fa-cart-shopping fa-lg"></i></a>
                 <!-- <a class="ml-3 text-dark" href="#" type="button" data-toggle="modal" data-target="#loginModal">
                     <i class="fa-solid fa-user fa-lg"></i></a> -->
                     <?php
-                    use CT275\Labs\UserRepository;
-                        session_start();
-
                         // Kiểm tra xem người dùng đã đăng nhập hay chưa
                         if (isset($_SESSION['user_id'])) {
                             $userId = $_SESSION['user_id'];

@@ -3,6 +3,12 @@ require_once __DIR__ . '/../bootstrap.php';
 
 use CT275\Labs\Product;
 use CT275\Labs\Paginator;
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header('Location: /auth/login.php'); // Chuyển hướng về trang đăng nhập nếu chưa đăng nhập
+    exit();
+}
+
 
 $product = new Product($PDO);
 // $products = $product->all();
@@ -28,18 +34,18 @@ include_once __DIR__ . '/../partials/head.php';
 <?php include_once __DIR__ . '/../partials/navbar.php' ?>
 
     <!-- Main Page Content -->
-    <div class="container">
+    <div class="container-fluid">
         <h2 class="mt-3 text-center">Quản lý Sản Phẩm</h2>
         <p class="text-center">Dưới đây là toàn bộ sản phẩm.</p>
-        <div class="row">
-            <div class="col-sm-12">
+        <div class="row w-100">
+            <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2 col-12">
 
                 <a href="/add.php" class="btn btn-primary mb-3">
                     <i class="fa fa-plus"></i> Thêm sản phẩm
                 </a>
 
                 <!-- Table Starts Here -->
-                <table id="contacts" class="table  table-bordered">
+                <table class="table  table-bordered">
                     <thead>
                         <tr>
                             <th class="text-center" scope="col">Ảnh</th>

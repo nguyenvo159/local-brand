@@ -31,7 +31,7 @@ include_once("../partials/head.php")
                         cấp cho khách hàng
                         những sản phẩm chất lượng cao với giá cả vô cùng hợp lý, Amiri luôn tìm kiếm những nhân
                         viên tài năng và đam mê thời trang để đưa thương hiệu của mình đến với khách hàng trên toàn
-                        quốc. <br><br> Với sự tận tâm và sự chuyên nghiệp của đội ngũ nhân viên, Heyyou! Studio tự tin
+                        quốc. <br><br> Với sự tận tâm và sự chuyên nghiệp của đội ngũ nhân viên, Amiri tự tin
                         sẽ
                         tiếp tục phát triển và đem lại những sản phẩm thời trang đẳng cấp cho khách hàng của mình.</p>
 

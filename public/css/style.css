@@ -119,12 +119,6 @@ html {
 }
 
 
-a#login-btn,
-a#register-btn {
-	cursor: pointer;
-	font-size: 24px;
-	color: #000;
-}
 
 .decoration {
 	border-bottom: 2px solid var(--black);
@@ -218,3 +212,15 @@ a#register-btn {
 	color: rgba(0, 0, 0, 0.7);
 	font-size: 24px;
 }
+
+/* Cart */
+
+#btn-orderCart {
+	background-color: #000;
+	color: #fff;
+}
+
+/* #btn-orderCart:hover {
+	background-color: #fff;
+	color: rgba(0, 0, 0, 0.5);
+} */
