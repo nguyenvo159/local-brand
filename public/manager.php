@@ -61,15 +61,15 @@ include_once __DIR__ . '/../partials/head.php';
                     <tbody>
                         <?php foreach($products as $product): ?>
                             <tr>
-                                <td class="text-center">
+                                <td class="align-middle text-center">
                                     <img class="img-fluid bg-transparent" src="<?=htmlspecialchars($product->productIMG)?>" alt=""
-                                        style="height: 100px; width: auto;">
-                                    </td>
+                                        style="height: auto; width: 100px;">
+                                </td>
                                 <td class="align-middle"><?=htmlspecialchars($product->productName)?></td>
                                 <td class="align-middle">
                                     <?php
                                         $categoryID = $product->categoryID;
-                                        $categories = [1 => "Áo", 2 => "Quần", 3 => "Khác"];
+                                        $categories = [1 => "Áo", 2 => "Quần", 3 => "Phụ kiện"];
                                         echo $categories[$categoryID] ?? "Không xác định";
                                     ?>
                                 </td>

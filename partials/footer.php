@@ -94,4 +94,12 @@
         endif; ?>
     });
 </script>
+<script>
+        $(document).ready(function () {
+            $('.icon-cardplus').click(function () {
+                // Hiển thị Toast khi nhấn vào icon
+                $('#addToCartToast').toast('show');
+            });
+        });
+    </script>
     <script src="/js/main.js"></script>

@@ -1,4 +1,11 @@
 $(document).ready(function () {
+
+    // Xử lý Toasts
+    $('.icon-cardplus').click(function () {
+        // Hiển thị Toast khi nhấn vào icon
+        $('#addToCartToast').toast('show');
+    });
+
     // Xử lý khi search
     $("#search-btn").on("click", function () {
         $("#search-input").toggleClass("d-none");

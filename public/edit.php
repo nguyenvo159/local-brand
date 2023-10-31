@@ -56,7 +56,7 @@ include_once __DIR__ . '/../partials/head.php';
                             <select name="categoryID" id="categoryID" class="form-control<?= isset($errors['categoryID']) ? ' is-invalid' : '' ?>">
                                 <option value="1" <?= ($product->categoryID == 1) ? 'selected' : '' ?>>Áo</option>
                                 <option value="2" <?= ($product->categoryID == 2) ? 'selected' : '' ?>>Quần</option>
-                                <option value="3" <?= ($product->categoryID == 3) ? 'selected' : '' ?>>Khác</option>
+                                <option value="3" <?= ($product->categoryID == 3) ? 'selected' : '' ?>>Phụ kiện</option>
                             </select>
 
                             <?php if (isset($errors['categoryID'])) : ?>

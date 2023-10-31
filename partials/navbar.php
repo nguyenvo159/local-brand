@@ -28,7 +28,7 @@ if (session_status() == PHP_SESSION_NONE) {
                         <a class="p-2 dropdown-item" href="/product.php">Tất cả</a>
                         <a class="p-2 dropdown-item" href="/product/shirts.php">Áo</a>
                         <a class="p-2 dropdown-item" href="/product/pants.php">Quần</a>
-                        <a class="p-2 dropdown-item" href="/product/others.php">Khác</a>
+                        <a class="p-2 dropdown-item" href="/product/others.php">Phụ Kiện</a>
                         <div class="m-0 dropdown-divider"></div>
                     </div>
                 </li>
@@ -99,3 +99,18 @@ if (session_status() == PHP_SESSION_NONE) {
         </form>
     </div>
 </header>
+
+<!-- Toasts -->
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 99; right: 0; bottom:0;">
+    <div id="addToCartToast" class="toast rounded-0" role="alert" aria-live="assertive" aria-atomic="true" data-delay="1500">
+        <div class="toast-header">
+            <strong class="mr-auto text-warning">Thông báo</strong>
+            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="toast-body">
+            Đã thêm sản phẩm vào <b>Giỏ hàng</b>
+        </div>
+    </div>
+</div>

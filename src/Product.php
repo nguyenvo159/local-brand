@@ -80,7 +80,7 @@ class Product
     public function all(): array
     {
         $products = [];
-        $statement = $this->db->prepare('SELECT * FROM products');
+        $statement = $this->db->prepare('SELECT * FROM products ORDER BY categoryID ASC');
         $statement->execute();
 
         while ($row = $statement->fetch()) {
@@ -91,6 +91,23 @@ class Product
 
         return $products;
     }
+
+    public function getByCategory(int $categoryID): array
+    {
+        $products = [];
+        $statement = $this->db->prepare('SELECT * FROM products WHERE categoryID = :categoryID');
+        $statement->execute(['categoryID' => $categoryID]);
+
+        while ($row = $statement->fetch()) {
+            $product = new Product($this->db);
+            $product->fillFromDB($row);
+            $products[] = $product;
+        }
+
+        return $products;
+    }
+
+    
     public function count(): int
     {
         $statement = $this->db->prepare('SELECT COUNT(*) FROM products');

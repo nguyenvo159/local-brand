@@ -5,20 +5,11 @@ use CT275\Labs\Product;
 use CT275\Labs\Paginator;
 
 $product = new Product($PDO);
-$products = $product->all();
+$products_shirt = $product->getByCategory(1);
+$products_pant = $product->getByCategory(2);
+$products_other = $product->getByCategory(3);
 
-// $limit = (isset($_GET['limit']) && is_numeric($_GET['limit'])) ? (int)$_GET['limit'] : 5;
 
-// $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
-
-// $paginator = new Paginator(
-//     totalRecords: $product->count(),
-//     recordsPerPage: $limit,
-//     currentPage: $page
-// );
-// $products = $product->paginate($paginator->recordOffset, $paginator->recordsPerPage);
-
-// $pages = $paginator->getPages(length: 3);
 
 include_once __DIR__ . '/../partials/head.php';
 ?>
@@ -38,13 +29,13 @@ include_once __DIR__ . '/../partials/head.php';
                 </ol>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img class="d-block w-100" src="https://bizweb.dktcdn.net/100/415/697/themes/902041/assets/slider_1.jpg" alt="First slide">
+                        <img class="d-block w-100" src="https://amiri.com/cdn/shop/files/DESKTOP_-slideshow-banner_desktop_core.png" alt="First slide">
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block w-100" src="https://bizweb.dktcdn.net/100/415/697/themes/902041/assets/slider_3.jpg" alt="Second slide">
+                        <img class="d-block w-100" src="https://amiri.com/cdn/shop/files/Slideshow-Banner_Desktop_AW23-Mens-6D.jpg" alt="Second slide">
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block w-100" src="https://bizweb.dktcdn.net/100/415/697/themes/902041/assets/slider_5.jpg" alt="Third slide">
+                        <img class="d-block w-100" src="https://amiri.com/cdn/shop/files/Slideshow-Banner_Desktop_AW23-Womens-1.jpg" alt="Third slide">
                     </div>
                 </div>
                 <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -74,19 +65,21 @@ include_once __DIR__ . '/../partials/head.php';
         <div class="container">
             <!-- Áo -->
             <div id="shirt" class="mb-5">
-                <h1 class="mb-4">Áo</h1>
+                <h2 class="mb-4">Áo</h2>
                 <div class="row justify-content-start">
                     <!-- Card -->
-                    <?php foreach ($products as $product):  ?>
+                    <?php 
+                    $limitedProducts = array_slice($products_shirt, 0, 7);
+                    foreach ($limitedProducts as $product):  ?>
                         <div class=" justify-content-center mb-3 col-lg-3 col-md-4 col-6 pr-3">
                             <div class="card-container">
-                                <div class=" card">
+                                <div class="card border-0">
                                     <img class="card-img-top " style="height: 240px; width: auto; object-fit: contain;" src="<?=htmlspecialchars($product->productIMG)?>">
-                                    <a class="card-overlay">
-                                        <i id="icon-cardplus" class="fa-solid fa-cart-plus"></i>
+                                    <a type="button" class="icon-cardplus card-overlay">
+                                        <i  class="fa-solid fa-cart-plus"></i>
                                     </a>
                                     <div class="card-body text-center text-justify">
-                                        <h5 class="card-title"><?=htmlspecialchars($product->productName)?></h5>
+                                        <h5 class="card-title main-hover"><?=htmlspecialchars($product->productName)?></h5>
                                         <div class="row justify-content-around">
                                                 <span class="price">$<?=htmlspecialchars($product->price)?></span>
                                                 <span class="compare-price">350.000đ</span>
@@ -96,12 +89,90 @@ include_once __DIR__ . '/../partials/head.php';
                             </div>
                         </div>
                     <?php endforeach ?>
+                    <div class=" justify-content-center mb-3 col-lg-3 col-md-4 col-6 pr-3">
+                        <div class="d-flex justify-content-center align-items-center" style="height:100%;">
+                            <h4> 
+                                <a class="main-hover text-decoration-underline" href="/product/shirts.php" > Xem thêm</a>
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Quần -->
+            <div id="pant" class="mb-5">
+                <h1 class="mb-4">Quần</h1>
+                <div class="row justify-content-start">
+                    <!-- Card -->
+                    <?php 
+                    $limitedProducts = array_slice($products_pant, 0, 7);
+                    foreach ($limitedProducts as $product):  ?>
+                        <div class=" justify-content-center mb-3 col-lg-3 col-md-4 col-6 pr-3">
+                            <div class="card-container">
+                                <div class="card border-0">
+                                    <img class="card-img-top " style="height: 240px; width: auto; object-fit: contain;" src="<?=htmlspecialchars($product->productIMG)?>">
+                                    <a type="button" class="icon-cardplus card-overlay">
+                                        <i class="fa-solid fa-cart-plus"></i>
+                                    </a>
+                                    <div class="card-body text-center text-justify">
+                                        <h5 class="card-title main-hover"><?=htmlspecialchars($product->productName)?></h5>
+                                        <div class="row justify-content-around">
+                                                <span class="price">$<?=htmlspecialchars($product->price)?></span>
+                                                <span class="compare-price">350.000đ</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach ?>
+                    <div class=" justify-content-center mb-3 col-lg-3 col-md-4 col-6 pr-3">
+                        <div class="d-flex justify-content-center align-items-center" style="height:100%;">
+                            <h4> 
+                                <a class="main-hover text-decoration-underline" href="/product/pants.php" > Xem thêm</a>
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Phụ kiện -->
+            <div id="other" class="mb-5">
+                <h1 class="mb-4">Phụ kiện</h1>
+                <div class="row justify-content-start">
+                    <!-- Card -->
+                    <?php 
+                    $limitedProducts = array_slice($products_other, 0, 7);
+                    foreach ($limitedProducts as $product):  ?>
+                        <div class=" justify-content-center mb-3 col-lg-3 col-md-4 col-6 pr-3">
+                            <div class="card-container">
+                                <div class="card border-0">
+                                    <img class="card-img-top " style="height: 240px; width: auto; object-fit: contain;" src="<?=htmlspecialchars($product->productIMG)?>">
+                                    <a type="button" class="icon-cardplus card-overlay">
+                                        <i class="fa-solid fa-cart-plus"></i>
+                                    </a>
+                                    <div class="card-body text-center text-justify">
+                                        <h5 class="card-title main-hover"><?=htmlspecialchars($product->productName)?></h5>
+                                        <div class="row justify-content-around">
+                                                <span class="price">$<?=htmlspecialchars($product->price)?></span>
+                                                <span class="compare-price">350.000đ</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach ?>
+                    <div class=" justify-content-center mb-3 col-lg-3 col-md-4 col-6 pr-3">
+                        <div class="d-flex justify-content-center align-items-center" style="height:100%;">
+                            <h4> 
+                                <a class="main-hover text-decoration-underline" href="/product/others.php" > Xem thêm</a>
+                            </h4>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+        
     </main>
+    
     <?php include_once __DIR__ . '/../partials/footer.php' ?>
 
-    
 </body>
 </html>

@@ -21,6 +21,17 @@ html {
 	scroll-behavior: smooth;
 }
 
+.main-hover:hover {
+	color: var(--main-color);
+}
+
+a.main-hover {
+	color: #000;
+	text-decoration: underline;
+}
+
+
+
 /* Font Vietnamese */
 .font-vie {
 	font-family: 'Be Vietnam Pro', sans-serif;
@@ -51,9 +62,7 @@ html {
 	animation-duration: 0.5s;
 }
 
-/* End Hiệu ứng  */
 
-/* CSS element */
 .icon-nav i:hover {
 	color: var(--main-color);
 }
@@ -101,12 +110,7 @@ html {
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1) !important;
 }
 
-/* .form-control-sm:focus {
 
-    box-shadow: none !important;
-}
-
-*/
 
 .input_form {
 	background: #FFFFFF;
@@ -185,7 +189,7 @@ html {
 }
 
 .card:hover img.card-img-top {
-	transform: scale(1.1);
+	transform: scale(1.2);
 }
 
 .card-overlay {
