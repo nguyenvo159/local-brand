@@ -6,14 +6,14 @@ if (session_status() == PHP_SESSION_NONE) {
 ?>
 
 <header class="position-relative">
-    <nav class="border-bottom navbar navbar-expand-md navbar-light bg-light position-relative">
+    <nav class="border-bottom navbar navbar-expand-lg navbar-light bg-light position-relative">
         <a class="p-3 navbar-brand mr-auto d-flex align-items-center" href="/">
             <img src="https://vectorseek.com/wp-content/uploads/2023/07/Amiri-Logo-Vector.svg-.png" width=auto height="20"
                 class="d-inline-block align-top" alt="Logo"></a>
-        <div class="mx-auto font-vie collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="mx-auto pr-5 font-vie collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mx-auto pr-5 pl-3">
                 <li class="p-2 mr-3 ml-3 nav-item">
-                    <a class="nav-content" href="/">Trang chủ<span class="sr-only">(current)</span></a>
+                    <a class="nav-content" href="/">Trang Chủ<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="p-2 mr-3 ml-3 nav-item">
                     <a class="nav-content " href=" #">Sale</a>
@@ -23,8 +23,8 @@ if (session_status() == PHP_SESSION_NONE) {
                         aria-expanded="false">
                         Sản Phẩm
                     </a>
-                    <div class="border-0 pt-3 pb-0 m-0 rounded-0 dropdown-menu bg-light">
-                        <div class="m-0 dropdown-divider"></div>
+                    <div class="border-0 pt-2 pb-0 m-0 rounded-0 dropdown-menu bg-light">
+                        <!-- <div class="m-0 dropdown-divider"></div> -->
                         <a class="p-2 dropdown-item" href="/product.php">Tất cả</a>
                         <a class="p-2 dropdown-item" href="/product/shirts.php">Áo</a>
                         <a class="p-2 dropdown-item" href="/product/pants.php">Quần</a>
@@ -33,7 +33,7 @@ if (session_status() == PHP_SESSION_NONE) {
                     </div>
                 </li>
                 <li class="p-2 mr-3 ml-3 nav-item">
-                    <a class="nav-content" href="/about.php">About</a>
+                    <a class="nav-content" href="/about.php">Về Chúng Tôi</a>
                 </li>
             </ul>
         </div>
@@ -92,9 +92,11 @@ if (session_status() == PHP_SESSION_NONE) {
         <h5 class="m-0">Tìm kiếm</h5>
         <form class="w-50 p-2 rounded form-inline">
             <div class="d-flex w-100 justify-content-center align-items-center icon-nav">
-                <input class="input_form form-control-sm mr-3 w-100 roun" name="search" type="search"
-                    placeholder="Vui lòng nhập sản phẩm bạn muốn tìm..." aria-label="Search">
-                <i class="fa-solid fa-magnifying-glass fa-lg" type="submit"></i>
+                <form >
+                    <input class="input_form form-control-sm mr-3 w-100 roun" name="search" type="search"
+                        placeholder="Vui lòng nhập sản phẩm bạn muốn tìm..." aria-label="Search">
+                    <i class="fa-solid fa-magnifying-glass fa-lg" type="submit"></i>
+                </form>
             </div>
         </form>
     </div>

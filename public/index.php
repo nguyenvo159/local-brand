@@ -65,7 +65,7 @@ include_once __DIR__ . '/../partials/head.php';
         <div class="container">
             <!-- Áo -->
             <div id="shirt" class="mb-5">
-                <h2 class="mb-4">Áo</h2>
+                <a class="main-hover text-decoration-none" href="/product/shirts.php"><h2 class="mb-4">Áo</h2></a>
                 <div class="row justify-content-start">
                     <!-- Card -->
                     <?php 
@@ -100,7 +100,7 @@ include_once __DIR__ . '/../partials/head.php';
             </div>
             <!-- Quần -->
             <div id="pant" class="mb-5">
-                <h1 class="mb-4">Quần</h1>
+                <a class="main-hover text-decoration-none" href="/product/pants.php"><h2 class="mb-4">Quần</h2></a>
                 <div class="row justify-content-start">
                     <!-- Card -->
                     <?php 
@@ -135,7 +135,7 @@ include_once __DIR__ . '/../partials/head.php';
             </div>
             <!-- Phụ kiện -->
             <div id="other" class="mb-5">
-                <h1 class="mb-4">Phụ kiện</h1>
+                <a class="main-hover text-decoration-none" href="/product/others.php"><h2 class="mb-4">Phụ kiện</h2></a>
                 <div class="row justify-content-start">
                     <!-- Card -->
                     <?php 

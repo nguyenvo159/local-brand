@@ -18,7 +18,12 @@ include_once __DIR__ . '/../../partials/head.php';
     <div class="container-fluid">
         <div class="row">
             <div class="col-10 offset-1">
-                <h4 class="mt-3 mb-3">Sản phẩm / Phụ kiện</h4>
+                <div class="mt-3 mb-3 d-flex justify-content-center">
+                    <a class="p-3 pr-4 pl-4 font-weight-bold main-hover text-decoration-none" style="font-size: 18px;" href="/product.php">Tất cả sản phẩm</a>
+                    <a class="p-3 pr-4 pl-4 font-weight-bold main-hover text-decoration-none" style="font-size: 18px;" href="/product/shirts.php">Áo</a>
+                    <a class="p-3 pr-4 pl-4 font-weight-bold main-hover text-decoration-none" style="font-size: 18px;" href="/product/pants.php">Quần</a>
+                    <a class="active-bottom p-3 pr-4 pl-4 font-weight-bold main-hover text-decoration-none" style="font-size: 18px;" href="/product/others.php">Phụ kiện</a>                   
+                </div>
 
                 <div class="row justify-content-start">
 

@@ -56,10 +56,10 @@
                     <div>
                         <h4>About Us</h4>
                         <ul class="list-unstyled">
-                            <li class="mb-2"> <a class="text-white text-decoration-none" href="">Trang chủ</a></li>
+                            <li class="mb-2"> <a class="text-white text-decoration-none" href="/">Trang chủ</a></li>
                             <li class="mb-2"> <a class="text-white text-decoration-none" href="">Sale</a></li>
-                            <li class="mb-2"> <a class="text-white text-decoration-none" href="">Sản phẩm</a></li>
-                            <li class="mb-2"> <a class="text-white text-decoration-none" href="">Về chúng tôi</a></li>
+                            <li class="mb-2"> <a class="text-white text-decoration-none" href="/product.php">Sản phẩm</a></li>
+                            <li class="mb-2"> <a class="text-white text-decoration-none" href="/about.php">Về chúng tôi</a></li>
                         </ul>
                     </div>
                 </div>

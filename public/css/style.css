@@ -30,7 +30,13 @@ a.main-hover {
 	text-decoration: underline;
 }
 
+.active-bottom {
+	border-bottom: 1px solid #000;
+}
 
+.active-bottom:hover {
+	border-color: var(--main-color);
+}
 
 /* Font Vietnamese */
 .font-vie {
@@ -71,7 +77,7 @@ a.main-hover {
 	font-weight: 500;
 	color: #000;
 	text-decoration: none;
-	font-size: 18px;
+	font-size: 20px;
 }
 
 .nav-item {
