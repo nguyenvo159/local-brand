@@ -8,6 +8,11 @@ if (!isset($_SESSION['user_id'])) {
     header('Location: /auth/login.php'); // Chuyển hướng về trang đăng nhập nếu chưa đăng nhập
     exit();
 }
+elseif ($_SESSION['user_id']!= 1){
+    header('Location: /'); // Chuyển hướng về trang đăng nhập nếu chưa đăng nhập
+    exit();
+}   
+
 
 
 $product = new Product($PDO);

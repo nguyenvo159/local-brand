@@ -23,7 +23,7 @@ if (session_status() == PHP_SESSION_NONE) {
                         aria-expanded="false">
                         Sản Phẩm
                     </a>
-                    <div class="border-0 pt-2 pb-0 m-0 rounded-0 dropdown-menu bg-light">
+                    <div class="border-0 m-0 rounded-0 dropdown-menu bg-light">
                         <!-- <div class="m-0 dropdown-divider"></div> -->
                         <a class="p-2 dropdown-item" href="/product.php">Tất cả</a>
                         <a class="p-2 dropdown-item" href="/product/shirts.php">Áo</a>
@@ -41,7 +41,7 @@ if (session_status() == PHP_SESSION_NONE) {
         <div class="icon-nav d-flex justify-content-center align-items-center position-absolute mr-5"
             style="right: 0; top: 20px;">
 
-            <div class=" d-flex">
+            <div class=" d-flex align-items-center">
                 <a id="search-btn" class="ml-3 text-dark" href="#"><i
                         class="fa-solid fa-magnifying-glass fa-lg"></i></a>
                 <a class="ml-3 text-dark" href="/cart.php">
@@ -56,7 +56,7 @@ if (session_status() == PHP_SESSION_NONE) {
 
                             // Hiển thị tên người dùng
                             echo '<div class="">
-                                    <a class="ml-3 text-dark dropdown-toggle" href="#" role="button" id="userDropdown" data-toggle="dropdown" 
+                                    <a class="main-hover text-decoration-none ml-3 text-dark dropdown-toggle" href="#" role="button" id="userDropdown" data-toggle="dropdown" 
                                     aria-haspopup="true" aria-expanded="false">' . $user->getLastName() . '</a>
                                     <div class="dropdown-menu mt-4 p-0 rounded-0 position-absolute" aria-labelledby="userDropdown" style="right: -10%; width:auto;">';
                             
