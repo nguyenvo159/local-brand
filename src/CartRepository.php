@@ -12,6 +12,27 @@ class CartRepository
         $this->pdo = $pdo;
     }
 
+    public function getCartById(int $cartId): ?Cart
+    {
+        $statement = $this->pdo->prepare("SELECT * FROM Cart WHERE cartID = :cartID");
+        $statement->bindParam(':cartID', $cartId);
+        $statement->execute();
+
+        $cartData = $statement->fetch(PDO::FETCH_ASSOC);
+
+        if (!$cartData) {
+            return null; // Trả về null nếu không tìm thấy cart
+        }
+
+        return new Cart(
+            $cartData['cartID'],
+            $cartData['userID'],
+            $cartData['productID'],
+            $cartData['quantity'],
+            $cartData['money']
+        );
+    }
+
     public function getAllCartsByUserId(int $userId): array
     {
         $statement = $this->pdo->prepare("SELECT * FROM Cart WHERE userID = :userID");

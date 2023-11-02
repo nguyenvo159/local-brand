@@ -46,14 +46,14 @@ include_once __DIR__ . '/../partials/head.php';
                                     <div class="input-group" style="width: 130px;">
                                         <input type="hidden" name="id" value="<?=htmlspecialchars($product->getId())?>">
                                         <div class="input-group-prepend">
-                                            <button class="btn border rounded-0" type="button">
+                                            <button class="btn border rounded-0 decrease-btn" type="submit" data-product-id="<?=htmlspecialchars($product->getId())?>">
                                                 <i class="fas fa-minus"></i>
                                             </button>
                                         </div>
-                                        <input type="text" name="quanlity" class="form-control input-number text-center"
+                                        <input type="text" id="quantity<?=htmlspecialchars($cart->getProductId())?>" name="quantity" class="form-control input-number text-center"
                                             value="<?=htmlspecialchars($cart->getQuantity())?>" min="1" max="10">
                                         <div class="input-group-append">
-                                            <button class="btn border rounded-0" type="button">
+                                            <button class="btn border rounded-0 increase-btn" type="submit" data-product-id="<?=htmlspecialchars($product->getId())?>">
                                                 <i class="fas fa-plus"></i>
                                             </button>
                                         </div>
@@ -87,5 +87,39 @@ include_once __DIR__ . '/../partials/head.php';
 </main>
 
 <?php include_once __DIR__ . '/../partials/footer.php' ?>
+<script>
+    $(document).ready(function() {
+        function updateQuantity(productId, temp) {
+            var quantityInput = $('#quantity' + productId);
+            var currentQuantity = parseInt(quantityInput.val(), 10);
+            var newQuantity = currentQuantity + temp;
 
+            if (newQuantity >= 1 && newQuantity <= 100) {
+                quantityInput.val(newQuantity);
+                $.ajax({
+                    type: 'POST',
+                    url: '/updateQuantity.php',
+                    data: {
+                        userID: <?= $_SESSION['user_id'] ?>,
+                        productID: productId,
+                        newQuantity: newQuantity,
+                    },
+                    dataType: 'json', 
+                    
+                });
+            }
+        }
+        
+        $('.decrease-btn').click(function() {
+            var productId = $(this).data('product-id');
+            updateQuantity(productId, -1);
+        });
+
+        $('.increase-btn').click(function() {
+            var productId = $(this).data('product-id');
+            updateQuantity(productId, 1);
+        });
+    });
+</script>
 </body>
+</html>
