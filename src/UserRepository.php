@@ -44,8 +44,15 @@ class UserRepository
 
     public function addUser(string $firstName, string $lastName, string $email, string $password, string $phone): bool
     {
-        $statement = $this->pdo->prepare("INSERT INTO users (firstName, lastName, email, password, phone) VALUES (?, ?, ?, ?, ?)");
-        return $statement->execute([$firstName, $lastName, $email, $password, $phone]);
+        $statement = $this->pdo->prepare("INSERT INTO users (firstName, lastName, email, password, phone) VALUES (:firstName, :lastName, :email, :password, :phone)");
+        
+        $statement->bindParam(':firstName', $firstName);
+        $statement->bindParam(':lastName', $lastName);
+        $statement->bindParam(':email', $email);
+        $statement->bindParam(':password', $password);
+        $statement->bindParam(':phone', $phone);
+
+        return $statement->execute();
     }
 
     public function checkPassword(User $user, string $password): bool

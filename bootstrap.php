@@ -20,6 +20,7 @@ try {
             'dbpass' => '2518700146'
         ]);
         $userRepository = new CT275\Labs\UserRepository($PDO);
+        $cartRepository = new \CT275\Labs\CartRepository($PDO);
     } catch (Exception $ex) {
         echo 'Không thể kết nối đến MySQL,
             kiểm tra lại username/password đến MySQL.<br>';
