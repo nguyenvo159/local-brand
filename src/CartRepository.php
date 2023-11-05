@@ -56,7 +56,7 @@ class CartRepository
         return $carts;
     }
     // Lấy quantity theo userID, productID
-    protected function getQuantityByProductId(int $userId, int $productId): int
+    public function getQuantityByProductId(int $userId, int $productId): int
     {
         $statement = $this->pdo->prepare("SELECT quantity FROM Cart WHERE userID = :userID AND productID = :productID");
         $statement->bindParam(':userID', $userId);
@@ -137,7 +137,16 @@ class CartRepository
 
         return $totalMoney;
     }
-    
+    public function isCartEmpty(int $userId): bool
+    {
+        $statement = $this->pdo->prepare("SELECT COUNT(*) FROM Cart WHERE userID = :userID");
+        $statement->bindParam(':userID', $userId);
+        $statement->execute();
+
+        $rowCount = $statement->fetchColumn();
+
+        return $rowCount === 0;
+    }
 }
 
 class Cart

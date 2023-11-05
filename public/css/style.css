@@ -21,6 +21,12 @@ html {
 	scroll-behavior: smooth;
 }
 
+.custom-hr {
+	border-top: 3px solid #3498db;
+	;
+}
+
+
 .main-hover:hover {
 	color: var(--main-color);
 }

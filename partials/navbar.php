@@ -64,7 +64,8 @@ if (session_status() == PHP_SESSION_NONE) {
                                 echo '<a class="dropdown-item" href="/manager.php">Quản lý</a>
                                         <div class="dropdown-divider m-0"></div>';
                             }
-                            
+                            echo '<a class="dropdown-item" href="/order.php">Đơn hàng</a>
+                                        <div class="dropdown-divider m-0"></div>';
                             echo '<a class="dropdown-item" href="/auth/logout.php">Logout</a>
                                     </div>
                                     </div>';

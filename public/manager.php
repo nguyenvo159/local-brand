@@ -90,7 +90,7 @@ include_once __DIR__ . '/../partials/head.php';
                                     
                                     <form class="form-inline ml-1" action="/delete.php" method="POST">
                                         <input type="hidden" name="id" value="<?= $product->getId() ?>">
-                                        <button type="submit" class="btn btn-xs btn-danger" name="delete-contact">
+                                        <button type="submit" class="btn btn-xs btn-danger" name="delete-product">
                                             <i alt="Delete" class="fa fa-trash"></i>
                                         </button>
                                     </form>
@@ -136,8 +136,8 @@ include_once __DIR__ . '/../partials/head.php';
                 </div>
                 <div class="modal-body">Bạn có thực sự muốn xóa sản phẩm?</div>
                 <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-primary">Hủy</button>
                     <button type="button" data-dismiss="modal" class="btn btn-danger" id="delete">Xóa</button>
-                    <button type="button" data-dismiss="modal" class="btn btn-default">Hủy</button>
                 </div>
             </div>
         </div>
@@ -146,15 +146,13 @@ include_once __DIR__ . '/../partials/head.php';
     <?php include_once __DIR__ . '/../partials/footer.php' ?>
     <script>
         $(document).ready(function() {
-            $('button[name="delete-contact"]').on('click', function(e){
+            $('button[name="delete-product"]').on('click', function(e){
                 e.preventDefault();
 
                 const form = $(this).closest('form');
                 const nameTd = $(this).closest('tr').find('td:eq(1)');
                 
-                if (nameTd.length > 0) {
-                    $('.modal-body').html(`Bạn có thực sự muốn xóa "${nameTd.text()}"?`);
-                }
+                
                 $('#delete-confirm').modal({
                     backdrop: 'static', keyboard: false
                 })

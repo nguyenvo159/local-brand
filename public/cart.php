@@ -27,12 +27,17 @@ include_once __DIR__ . '/../partials/head.php';
             <div class="row">
                 <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2">
                     <h1 class="mt-3 mb-5">Giỏ Hàng</h1>
+                    <?php if (empty($carts)) : ?>
+                        <div class="d-flex justify-content-center align-items-center">
+                            <p>Giỏ rỗng. Vui lòng thêm sản phẩm vào giỏ!</p>
+                        </div>
+                    <?php else : ?>
                     <?php foreach ( $carts as $cart):  
                         $product = $product->find($cart->getProductId());
                         ?>
                         
                         <!-- Card Product in Cart -->
-                        <div class="card mt-3 flex-row border-0" data-product-id="<?=htmlspecialchars($product->getId())?>">
+                        <div class="card mt-3 flex-row border-right-0 border-left-0 border-top-0" data-product-id="<?=htmlspecialchars($product->getId())?>">
                             <div class="card-img-left d-flex align-items-center" style="height: 154px;">
                                 <img src="<?=htmlspecialchars($product->productIMG)?>"
                                     style="width:154px; height: 100%; object-fit: contain;" class="img-fluid"
@@ -73,9 +78,8 @@ include_once __DIR__ . '/../partials/head.php';
                             
                         </div>
                     <?php endforeach ?>
-
-                    <div class="w-100 pt-3 pb-3 mt-5 d-flex justify-content-between  align-items-center">
-                        <h5>Tổng thanh toán: <span id="totalMoney" class="price">$<?= $cartRepository->getTotalMoney($_SESSION['user_id'])?></span></h5>
+                    <div class="w-100 pt-3 pb-3 mt-3 d-flex justify-content-between  align-items-center">
+                        <h5>Tổng thanh toán: <span id="totalMoney" class="price">$<?= number_format($cartRepository->getTotalMoney($_SESSION['user_id']), 2) ?></span></h5>
                         <a id="btn-orderCart" class="p-3 pr-5 pl-5 border btn btn-outline-0 rounded-0" type="button" data-toggle="modal" data-target="#orderModal">Đặt Hàng</a>
                     </div>
 
@@ -134,6 +138,7 @@ include_once __DIR__ . '/../partials/head.php';
                                                                 <p class="price card-text"> <i>$<?=htmlspecialchars($product->price)?></i> </p>
 
                                                                 <div class="d-flex">
+                                                                    <input type="hidden" name="quantity" value="<?=htmlspecialchars($cart->getQuantity())?>">
                                                                 <p class="m-0 w-100 text-end" data-product-id="<?=htmlspecialchars($product->getId())?>">x<?=htmlspecialchars($cart->getQuantity())?></p>
                                                                 </div>
                                                             </div>
@@ -145,8 +150,8 @@ include_once __DIR__ . '/../partials/head.php';
                                             </div>
                                             <hr>
                                             <div class ="p-2">
-                                                <b class="mb-3">Tạm tính: <span id="totalMoney" class="price">$<?= $cartRepository->getTotalMoney($_SESSION['user_id'])?></span></b><br>
-                                                <b class="mb-3">Vận chuyển: <span id="totalMoney" class="price">$2</span></b> <br>
+                                                <b class="mb-3">Tạm tính: <span  class="price">$<?= $cartRepository->getTotalMoney($_SESSION['user_id'])?></span></b><br>
+                                                <b class="mb-3">Vận chuyển: <span  class="price">$2</span></b> <br>
                                                 <b class="mb-3">Tổng thanh toán: <span id="totalMoney" class="price">$<?= $cartRepository->getTotalMoney($_SESSION['user_id']) + 2?></span></b>
                                                 <input type="hidden" name="totalMoney" value="<?= $cartRepository->getTotalMoney($_SESSION['user_id']) + 2?>">
                                             </div>
@@ -163,7 +168,7 @@ include_once __DIR__ . '/../partials/head.php';
                             </div>
                         </div>
                     </div>
-
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
