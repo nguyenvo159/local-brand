@@ -12,16 +12,18 @@ class CartRepository
         $this->pdo = $pdo;
     }
 
-    public function getCartById(int $cartId): ?Cart
+    // Lấy sản phẩm theo ID
+    public function getCartById(int $userId, int $cartId): ?Cart
     {
-        $statement = $this->pdo->prepare("SELECT * FROM Cart WHERE cartID = :cartID");
+        $statement = $this->pdo->prepare("SELECT * FROM Cart WHERE userID = :userID AND cartID = :cartID");
+        $statement->bindParam(':userID', $userId);
         $statement->bindParam(':cartID', $cartId);
         $statement->execute();
 
         $cartData = $statement->fetch(PDO::FETCH_ASSOC);
 
         if (!$cartData) {
-            return null; // Trả về null nếu không tìm thấy cart
+            return null; 
         }
 
         return new Cart(
@@ -32,10 +34,10 @@ class CartRepository
             $cartData['money']
         );
     }
-
+    // Lấy cart theo userID 
     public function getAllCartsByUserId(int $userId): array
     {
-        $statement = $this->pdo->prepare("SELECT * FROM Cart WHERE userID = :userID");
+        $statement = $this->pdo->prepare("SELECT * FROM Cart WHERE userID = :userID ORDER BY cartID DESC");
         $statement->bindParam(':userID', $userId);
         $statement->execute();
 
@@ -46,23 +48,47 @@ class CartRepository
                 $cartData['userID'],
                 $cartData['productID'],
                 $cartData['quantity'],
-                $cartData['money'] // Lấy giá trị money từ cơ sở dữ liệu
+                $cartData['money'] 
             );
             $carts[] = $cart;
         }
 
         return $carts;
     }
-    public function addToCart(int $userId, int $productId, int $quantity): bool
+    // Lấy quantity theo userID, productID
+    protected function getQuantityByProductId(int $userId, int $productId): int
     {
-        $statement = $this->pdo->prepare("INSERT INTO Cart (userID, productID, quantity) VALUES (:userID, :productID, :quantity)");
-
+        $statement = $this->pdo->prepare("SELECT quantity FROM Cart WHERE userID = :userID AND productID = :productID");
         $statement->bindParam(':userID', $userId);
         $statement->bindParam(':productID', $productId);
-        $statement->bindParam(':quantity', $quantity);
+        $statement->execute();
 
-        return $statement->execute();
+        return (int)$statement->fetchColumn();
     }
+
+    // Thêm sản phẩm
+    public function addToCart(int $userId, int $productId): bool
+    {
+        $quantity =1;
+        if ($this->getQuantityByProductId($userId, $productId)) {
+            $currentQuantity = $this->getQuantityByProductId($userId, $productId);
+            $newQuantity = $currentQuantity + $quantity;
+            return $this->updateQuantity($userId, $productId, $newQuantity);
+
+
+        } else {
+            // Nếu chưa tồn tại, thêm mới
+            $statement = $this->pdo->prepare("INSERT INTO Cart (userID, productID, quantity) VALUES (:userID, :productID, :quantity)");
+        
+            $statement->bindParam(':userID', $userId);
+            $statement->bindParam(':productID', $productId);
+            $statement->bindParam(':quantity', $quantity);
+        
+            return $statement->execute();
+        }
+    }
+
+    // Cập nhật số lượng sản phẩm
     public function updateQuantity(int $userId, int $productId, int $newQuantity): bool
     {
         $statement = $this->pdo->prepare(
@@ -76,6 +102,8 @@ class CartRepository
 
         return $statement->execute();
     }
+
+    // Xóa 1 sản phẩm trong Cart
     public function removeFromCart(int $userId, int $productId): bool
     {
         $statement = $this->pdo->prepare(
@@ -87,6 +115,27 @@ class CartRepository
         $statement->bindParam(':productID', $productId);
 
         return $statement->execute();
+    }
+
+    // Xóa cart 
+    public function removeAll(int $userId): bool
+    {
+        $statement = $this->pdo->prepare("DELETE FROM Cart WHERE userID = :userID");
+        $statement->bindParam(':userID', $userId);
+
+        return $statement->execute();
+    }
+
+
+    public function getTotalMoney(int $userId): float
+    {
+        $statement = $this->pdo->prepare("SELECT SUM(money) FROM Cart WHERE userID = :userID");
+        $statement->bindParam(':userID', $userId);
+        $statement->execute();
+
+        $totalMoney = (float)$statement->fetchColumn();
+
+        return $totalMoney;
     }
     
 }

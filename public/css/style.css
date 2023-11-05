@@ -101,7 +101,9 @@ a.main-hover {
 	text-decoration: none;
 }
 
-
+.form-control:focus {
+	box-shadow: none;
+}
 
 .form-group label,
 .form-group input {

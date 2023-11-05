@@ -48,7 +48,7 @@ include_once __DIR__ . '/../partials/head.php';
                                         <i class="fa-solid fa-cart-plus"></i>
                                     </a>
                                     <div class="card-body text-center text-justify">
-                                        <h5 class="card-title"><?=htmlspecialchars($product->productName)?></h5>
+                                        <h5 class="card-title main-hover" data-product-id="<?= htmlspecialchars($product->getId()) ?>"><?=htmlspecialchars($product->productName)?></h5>
                                         <div class="row justify-content-around">
                                                 <span class="price">$<?=htmlspecialchars($product->price)?></span>
                                                 <span class="compare-price">350.000đ</span>

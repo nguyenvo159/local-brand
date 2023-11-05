@@ -54,9 +54,9 @@ include_once __DIR__ . '/../partials/head.php';
                     <thead>
                         <tr>
                             <th class="text-center" scope="col">Ảnh</th>
-                            <th scope="col">Tên</th>
-                            <th scope="col">Loại</th>
-                            <th scope="col">Giá</th>
+                            <th scope="col">Thông tin</th>
+                            <!-- <th scope="col">Loại</th>
+                            <th scope="col">Giá</th> -->
                             <th scope="col">Mô tả</th>
                             <th scope="col">Ngày Tạo</th>
                             <th scope="col">Ngày sửa</th>
@@ -70,18 +70,18 @@ include_once __DIR__ . '/../partials/head.php';
                                     <img class="img-fluid bg-transparent" src="<?=htmlspecialchars($product->productIMG)?>" alt=""
                                         style="height: auto; width: 100px;">
                                 </td>
-                                <td class="align-middle"><?=htmlspecialchars($product->productName)?></td>
                                 <td class="align-middle">
+                                    <b>Tên:</b> <i> <?=htmlspecialchars($product->productName)?></i> <br> 
+                                    <b>Loại:</b> <i>
                                     <?php
                                         $categoryID = $product->categoryID;
                                         $categories = [1 => "Áo", 2 => "Quần", 3 => "Phụ kiện"];
                                         echo $categories[$categoryID] ?? "Không xác định";
-                                    ?>
-                                </td>
-                                <td class="align-middle">$<?=htmlspecialchars($product->price)?></td>
+                                    ?></i> <br>
+                                    <b>Giá:</b> <i>$<?=htmlspecialchars($product->price)?></td> </i>
                                 <td class="align-middle"><?= empty($product->description) ? "Sản phẩm không có mô tả." : htmlspecialchars($product->description) ?></td>
-                                <td class="align-middle"><?=date("<b>H:i</b> d/m/Y", strtotime($product->created_at))?></td>
-                                <td class="align-middle"><?=date("<b>H:i</b> d/m/Y", strtotime($product->updated_at))?></td>
+                                <td class="align-middle"><i><?=date("<b>H:i</b> <br> d/m/Y", strtotime($product->created_at))?></i></td>
+                                <td class="align-middle"><i><?=date("<b>H:i</b> <br> d/m/Y", strtotime($product->updated_at))?></i></td>
                                 
                                 <td class="d-flex justify-content-center align-items-center" style="height: 125px;">
                                     <a href="<?='/edit.php?id=' . $product->getId()?>" class="btn btn-xs btn-primary">

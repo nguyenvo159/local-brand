@@ -96,11 +96,37 @@
     });
 </script>
 <script>
-        $(document).ready(function () {
-            $('.icon-cardplus').click(function () {
-                // Hiển thị Toast khi nhấn vào icon
-                $('#addToCartToast').toast('show');
-            });
+    $(document).ready(function () {
+        $('.icon-cardplus').click(function () {
+            // Hiển thị Toast khi nhấn vào icon
+            $('#addToCartToast').toast('show');
         });
-    </script>
-    <script src="/js/main.js"></script>
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('.icon-cardplus').click(function() {
+            // Kiểm tra đăng nhập
+            <?php if (isset($_SESSION['user_id'])) : ?>
+                var productId = $(this).closest('.card-container').find('.card-title').data('product-id');
+                addToCart(productId);
+            <?php else : ?>
+                window.location.href = '/auth/login.php';
+            <?php endif; ?>
+        });
+        function addToCart(productId) {
+            // Thực hiện thêm vào giỏ hàng bằng Ajax
+            $.ajax({
+                type: 'POST',
+                url: '/addToCart.php',
+                data: {
+                    userID: <?= $_SESSION['user_id'] ?? 0; ?>,
+                    productID: productId,
+                },
+                dataType: 'json'
+            });
+        }
+    });
+</script>
+<script src="/js/main.js"></script>

@@ -29,7 +29,6 @@ if (session_status() == PHP_SESSION_NONE) {
                         <a class="p-2 dropdown-item" href="/product/shirts.php">Áo</a>
                         <a class="p-2 dropdown-item" href="/product/pants.php">Quần</a>
                         <a class="p-2 dropdown-item" href="/product/others.php">Phụ Kiện</a>
-                        <div class="m-0 dropdown-divider"></div>
                     </div>
                 </li>
                 <li class="p-2 mr-3 ml-3 nav-item">
