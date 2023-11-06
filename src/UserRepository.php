@@ -49,7 +49,12 @@ class UserRepository
         $statement->bindParam(':firstName', $firstName);
         $statement->bindParam(':lastName', $lastName);
         $statement->bindParam(':email', $email);
-        $statement->bindParam(':password', $password);
+
+        // Băm mật khẩu
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+        $statement->bindParam(':password', $hashedPassword);
+        // $statement->bindParam(':password', $password);
+        
         $statement->bindParam(':phone', $phone);
 
         return $statement->execute();
@@ -57,7 +62,9 @@ class UserRepository
 
     public function checkPassword(User $user, string $password): bool
     {
-        return $user->getPassword() === $password;
+        // return $user->getPassword() === $password;
+
+        return password_verify($password, $user->getPassword());
     }
 }
 

@@ -61,7 +61,9 @@ if (session_status() == PHP_SESSION_NONE) {
                             
                             // Kiểm tra nếu userID là 1 thì hiển thị tùy chọn "Quản lý"
                             if ($user->getId() == 1) {
-                                echo '<a class="dropdown-item" href="/manager.php">Quản lý</a>
+                                echo '<a class="dropdown-item" href="/manager.php">Quản lý sản phẩm</a>
+                                        <div class="dropdown-divider m-0"></div>';
+                                echo '<a class="dropdown-item" href="/managerOrder.php">Quản lý đơn hàng</a>
                                         <div class="dropdown-divider m-0"></div>';
                             }
                             echo '<a class="dropdown-item" href="/order.php">Đơn hàng</a>
@@ -104,7 +106,7 @@ if (session_status() == PHP_SESSION_NONE) {
 
 <!-- Toasts -->
 <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 99; right: 0; bottom:0;">
-    <div id="addToCartToast" class="toast rounded-0" role="alert" aria-live="assertive" aria-atomic="true" data-delay="1500">
+    <div id="addToCartToast" class="toast rounded-0" role="alert" aria-live="assertive" aria-atomic="true" data-delay="500">
         <div class="toast-header">
             <strong class="mr-auto text-warning">Thông báo</strong>
             <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">

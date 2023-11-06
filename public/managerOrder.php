@@ -9,36 +9,13 @@ if (!isset($_SESSION['user_id'])) {
     header('Location: /auth/login.php'); // Chuyển hướng về trang đăng nhập nếu chưa đăng nhập
     exit();
 }
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-    $userId = $_SESSION['user_id'];
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $phone = $_POST['phone'];
-    $name = $_POST['name'];
-    $totalMoney = $_POST['totalMoney'];
-    $address = $_POST['address'];
-
-   
-    $cart = $cartRepository->getAllCartsByUserId($userId);
-
-    $orderDetails = [];
-    foreach ($cart as $cartItem) {
-        $productID = $cartItem->getProductId();
-        
-        $quantity = $cartItem->getQuantity();
-        $orderDetails[] = new OrderDetail(null, null, $productID, $quantity);
-
-    }
-    $success = $orderRepository->createOrder($userId, $name, $phone, $email, $totalMoney, $address, $orderDetails);
-    
-    $cartRepository->removeAll($userId);
-    redirect('/order.php');
-}
+elseif ($_SESSION['user_id']!= 1){
+    header('Location: /'); // Chuyển hướng về trang đăng nhập nếu chưa đăng nhập
+    exit();
+}  
 
 
-$orders = $orderRepository->getAllOrders($_SESSION['user_id']);
+$orders = $orderRepository->getAllOrdersInDB();
 
 
 include_once __DIR__ . '/../partials/head.php';
@@ -51,7 +28,8 @@ include_once __DIR__ . '/../partials/head.php';
 
 <main>
     <div class ="container mt-3">
-        <h1 class="mb-4" >Đơn hàng</h1>
+        <h1 class="mb-3" >Quản lý đơn hàng</h1>
+        
         <div class="row">   
             <?php foreach ( $orders as $order): 
                 $orderDetails = $order->getOrderDetail();
@@ -68,9 +46,10 @@ include_once __DIR__ . '/../partials/head.php';
                                         <i class="fa-solid fa-chevron-down"></i>
                                     </a>
                                 </div>
+                                <p><b>ID:</b> <i><?= htmlspecialchars($order->getUserID())?></i></p>
                                 <p><b>Người đặt:</b> <i><?= htmlspecialchars($order->getName())?>, 
                                     <?= htmlspecialchars($order->getPhone())?></i>
-                                </p>
+                                </p> 
                                 <p><b>Địa chỉ:</b> <i><?= htmlspecialchars($order->getAddress())?></i></p>
                                 <div class ="position-absolute" style="right: 5%; top:10%;">
                                     <form action="/deleteOrder.php" method="post">

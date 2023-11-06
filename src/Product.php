@@ -171,6 +171,9 @@ class Product
 
     public function find(int $id): ?Product
     {
+        if (!is_int($id) || $id <= 0) {
+            return null;
+        }
         $statement = $this->db->prepare('SELECT * FROM products WHERE id = :id');
         $statement->execute(['id' => $id]);
 

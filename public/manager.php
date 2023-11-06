@@ -84,7 +84,7 @@ include_once __DIR__ . '/../partials/head.php';
                                 <td class="align-middle"><i><?=date("<b>H:i</b> <br> d/m/Y", strtotime($product->updated_at))?></i></td>
                                 
                                 <td class="d-flex justify-content-center align-items-center" style="height: 125px;">
-                                    <a href="<?='/edit.php?id=' . $product->getId()?>" class="btn btn-xs btn-primary">
+                                    <a href="<?='/edit.php?id=' . $product->getId()?>" class="btn btn-xs btn-warning">
                                         <i alt="Edit"  class="fa-solid fa-pen-to-square"></i>
                                     </a>
                                     

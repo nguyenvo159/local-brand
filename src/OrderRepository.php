@@ -14,6 +14,7 @@ class OrderRepository
         $this->pdo = $pdo;
     }
 
+    // Lấy đơn hàng rtheo orderID
     public function getOrderById(int $orderId): ?Order
     {
         $statement = $this->pdo->prepare("SELECT * FROM Orders WHERE orderID = :orderID");
@@ -40,6 +41,8 @@ class OrderRepository
             $orderDetails
         );
     }
+
+    // Lấy chi tiết  đươn hàng 
     public function getOrderDetailsByOrderId(int $orderId): array
     {
         $statement = $this->pdo->prepare("SELECT * FROM OrderDetail WHERE orderID = :orderID");
@@ -60,10 +63,37 @@ class OrderRepository
         return $orderDetails;
     }
 
+    // Lấy order theo người dùng 
     public function getAllOrders(int $userID): array
     {
         $statement = $this->pdo->prepare("SELECT * FROM Orders WHERE userID = :userID ORDER BY orderID DESC");
         $statement->bindParam(':userID', $userID);
+        $statement->execute();
+
+        $orders = [];
+        while ($orderData = $statement->fetch(PDO::FETCH_ASSOC)) {
+            $orderDetails = $this->getOrderDetailsByOrderId($orderData['orderID']);
+
+            $order = new Order(
+                $orderData['orderID'],
+                $orderData['userID'],
+                $orderData['name'],
+                $orderData['phone'],
+                $orderData['email'],
+                $orderData['orderDate'],
+                $orderData['totalAmount'],
+                $orderData['address'],
+                $orderDetails
+            );
+            $orders[] = $order;
+        }
+
+        return $orders;
+    }
+
+    public function getAllOrdersInDB(): array
+    {
+        $statement = $this->pdo->prepare("SELECT * FROM Orders ORDER BY orderID DESC");
         $statement->execute();
 
         $orders = [];
