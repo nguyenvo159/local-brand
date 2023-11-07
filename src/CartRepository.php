@@ -67,9 +67,9 @@ class CartRepository
     }
 
     // Thêm sản phẩm
-    public function addToCart(int $userId, int $productId): bool
+    public function addToCart(int $userId, int $productId, int $quantity): bool
     {
-        $quantity =1;
+        // $quantity =1;
         if ($this->getQuantityByProductId($userId, $productId)) {
             $currentQuantity = $this->getQuantityByProductId($userId, $productId);
             $newQuantity = $currentQuantity + $quantity;
@@ -78,15 +78,16 @@ class CartRepository
 
         } else {
             // Nếu chưa tồn tại, thêm mới
-            $statement = $this->pdo->prepare("INSERT INTO Cart (userID, productID, quantity) VALUES (:userID, :productID, :quantity)");
+            $statement = $this->pdo->prepare("INSERT INTO Cart (userID, productID, quantity) VALUES (:userID, :productID, 1)");
         
             $statement->bindParam(':userID', $userId);
             $statement->bindParam(':productID', $productId);
-            $statement->bindParam(':quantity', $quantity);
+            // $statement->bindParam(':quantity', $quantity);
         
             return $statement->execute();
         }
     }
+
 
     // Cập nhật số lượng sản phẩm
     public function updateQuantity(int $userId, int $productId, int $newQuantity): bool

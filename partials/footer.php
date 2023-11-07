@@ -97,25 +97,38 @@
 </script>
 <script>
     $(document).ready(function () {
-        $('.icon-cardplus').click(function () {
-            // Hiển thị Toast khi nhấn vào icon
-            $('#addToCartToast').toast('show');
-        });
+        
     });
 </script>
 
 <script>
     $(document).ready(function() {
+
+        // Hiển thị Toast khi nhấn vào icon
+        $('.icon-cardplus').click(function () {
+            $('#addToCartToast').toast('show');
+        });
+        $('.addFromDetai').click(function () {
+            $('#addToCartToast').toast('show');
+        });
+
+        // Xem chi tiết sản phẩm
+        $('.card-title').on('click', function () {
+            var productId = $(this).data('product-id');
+            
+            window.location.href = '/detail.php?id=' + productId;
+        });
+
         $('.icon-cardplus').click(function() {
             // Kiểm tra đăng nhập
             <?php if (isset($_SESSION['user_id'])) : ?>
                 var productId = $(this).closest('.card-container').find('.card-title').data('product-id');
-                addToCart(productId);
+                addToCart(productId, 1);
             <?php else : ?>
                 window.location.href = '/auth/login.php';
             <?php endif; ?>
         });
-        function addToCart(productId) {
+        function addToCart(productId, quantity) {
             // Thực hiện thêm vào giỏ hàng bằng Ajax
             $.ajax({
                 type: 'POST',
@@ -123,6 +136,7 @@
                 data: {
                     userID: <?= $_SESSION['user_id'] ?? 0; ?>,
                     productID: productId,
+                    quantity:quantity,
                 },
                 dataType: 'json'
             });

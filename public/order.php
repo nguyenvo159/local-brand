@@ -104,7 +104,7 @@ include_once __DIR__ . '/../partials/head.php';
                                             alt="Ảnh sản phẩm">
                                     </div>
                                     <div class="p-2 card-body position-relative">
-                                        <strong class="card-title main-hover"><?=htmlspecialchars($product->productName)?></strong>
+                                        <strong class="card-title main-hover" data-product-id="<?= htmlspecialchars($product->getId()) ?>"><?=htmlspecialchars($product->productName)?></strong>
                                         <p class="price card-text"> <i>$<?=htmlspecialchars($product->price)?></i> </p>
                                                 
                                         <div class="position-absolute" style="right: 20px; bottom: 10%;">

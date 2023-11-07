@@ -15,15 +15,15 @@ if (session_status() == PHP_SESSION_NONE) {
                 <li class="p-2 mr-3 ml-3 nav-item">
                     <a class="nav-content" href="/">Trang Chủ<span class="sr-only">(current)</span></a>
                 </li>
-                <li class="p-2 mr-3 ml-3 nav-item">
+                <!-- <li class="p-2 mr-3 ml-3 nav-item">
                     <a class="nav-content " href=" #">Sale</a>
-                </li>
+                </li> -->
                 <li class="p-2 mr-3 ml-3 nav-item dropdown">
-                    <a class="nav-content" dropdown-toggle href="#" role="button" data-toggle="dropdown"
+                    <a class="nav-content" dropdown-toggle  role="button" data-toggle="dropdown"
                         aria-expanded="false">
                         Sản Phẩm
                     </a>
-                    <div class="border-0 m-0 rounded-0 dropdown-menu bg-light">
+                    <div class="border-0 pt-3 m-0 rounded-0 dropdown-menu bg-light">
                         <!-- <div class="m-0 dropdown-divider"></div> -->
                         <a class="p-2 dropdown-item" href="/product.php">Tất cả</a>
                         <a class="p-2 dropdown-item" href="/product/shirts.php">Áo</a>
@@ -61,14 +61,18 @@ if (session_status() == PHP_SESSION_NONE) {
                             
                             // Kiểm tra nếu userID là 1 thì hiển thị tùy chọn "Quản lý"
                             if ($user->getId() == 1) {
-                                echo '<a class="dropdown-item" href="/manager.php">Quản lý sản phẩm</a>
+                                echo '<a class="p-1 pl-4 text-start dropdown-item" href="/manager.php">
+                                        <i class="mr-2 fa-solid fa-list-check"></i>Quản lý SP</a>
                                         <div class="dropdown-divider m-0"></div>';
-                                echo '<a class="dropdown-item" href="/managerOrder.php">Quản lý đơn hàng</a>
+                                echo '<a class="p-1 pl-4 text-start dropdown-item" href="/managerOrder.php">
+                                        <i class="mr-2 fa-solid fa-bars-progress"></i>Quản lý ĐH</a>
                                         <div class="dropdown-divider m-0"></div>';
                             }
-                            echo '<a class="dropdown-item" href="/order.php">Đơn hàng</a>
+                            echo '<a class="p-1 pl-4 text-start dropdown-item" href="/order.php">
+                                        <i class=" mr-2 fa-solid fa-clipboard-list"></i>Đơn hàng</a>
                                         <div class="dropdown-divider m-0"></div>';
-                            echo '<a class="dropdown-item" href="/auth/logout.php">Logout</a>
+                            echo '<a class="p-1 pl-4 text-start dropdown-item" href="/auth/logout.php">
+                                        <i class="mr-2 fa-solid fa-right-from-bracket"></i>Logout</a>
                                     </div>
                                     </div>';
                         } else {

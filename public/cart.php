@@ -44,7 +44,7 @@ include_once __DIR__ . '/../partials/head.php';
                                     alt="Ảnh sản phẩm">
                             </div>
                             <div class="card-body">
-                                <h5 class="card-title main-hover"><?=htmlspecialchars($product->productName)?></h5>
+                                <h5 class="card-title main-hover" data-product-id="<?= htmlspecialchars($product->getId()) ?>"><?=htmlspecialchars($product->productName)?></h5>
                                 <p class="price card-text">$<?=htmlspecialchars($product->price)?></p>
 
                                 <div class="d-flex justify-content-between">
@@ -134,7 +134,7 @@ include_once __DIR__ . '/../partials/head.php';
                                                                     alt="Ảnh sản phẩm">
                                                             </div>
                                                             <div class="card-body">
-                                                                <h5 class="card-title main-hover"><?=htmlspecialchars($product->productName)?></h5>
+                                                                <h5 class="card-title main-hover" data-product-id="<?= htmlspecialchars($product->getId()) ?>"><?=htmlspecialchars($product->productName)?></h5>
                                                                 <p class="price card-text"> <i>$<?=htmlspecialchars($product->price)?></i> </p>
 
                                                                 <div class="d-flex">

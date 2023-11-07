@@ -5,8 +5,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $userId = $_POST['userID'];
     $productId = $_POST['productID'];
-    
-    $cartRepository->addToCart($userId, $productId);
+    $quantity = $_POST['quantity'];
+    $cartRepository->addToCart($userId, $productId, $quantity);
     
 }
 

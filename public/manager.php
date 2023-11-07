@@ -14,22 +14,29 @@ elseif ($_SESSION['user_id']!= 1){
 }   
 
 
-
 $product = new Product($PDO);
 // $products = $product->all();
 
-$limit = (isset($_GET['limit']) && is_numeric($_GET['limit'])) ? (int)$_GET['limit'] : 10;
+if(isset($_POST['type']) && $_POST['type'] !=0){
+    $type = $_POST['type'];
+    
+    $products = $product->getByCategory($type);
+}
 
-$page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
+else{
+    $limit = (isset($_GET['limit']) && is_numeric($_GET['limit'])) ? (int)$_GET['limit'] : 10;
 
-$paginator = new Paginator(
-    totalRecords: $product->count(),
-    recordsPerPage: $limit,
-    currentPage: $page
-);
-$products = $product->paginate($paginator->recordOffset, $paginator->recordsPerPage);
+    $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? (int)$_GET['page'] : 1;
 
-$pages = $paginator->getPages(length: 3);
+    $paginator = new Paginator(
+        totalRecords: $product->count(),
+        recordsPerPage: $limit,
+        currentPage: $page
+    );
+    $products = $product->paginate($paginator->recordOffset, $paginator->recordsPerPage);
+
+    $pages = $paginator->getPages(length: 3);
+}
 
 include_once __DIR__ . '/../partials/head.php';
 ?>
@@ -48,15 +55,27 @@ include_once __DIR__ . '/../partials/head.php';
                 <a href="/add.php" class="btn btn-primary mb-3">
                     <i class="fa fa-plus"></i> Thêm sản phẩm
                 </a>
+                    <form action="/manager.php" method="post">
+                        <div class="mb-3 d-flex justify-content-start align-items-center">
+                            <label for="type">Sắp xếp theo </label>
+                            <select name="type" id="type" class="ml-2 pt-0 pb-0 rounded-0 form-control" style="width: 110px; height: 38px;">
+                                <option class="rounded-0" value="0" <?= isset($type) && $type == 0 ? 'selected' : '' ?>>--</option>
+                                <option class="rounded-0" value="1" <?= isset($type) && $type == 1 ? 'selected' : '' ?>>Áo</option>
+                                <option class="rounded-0" value="2" <?= isset($type) && $type == 2 ? 'selected' : '' ?>>Quần</option>
+                                <option class="rounded-0" value="3" <?= isset($type) && $type == 3 ? 'selected' : '' ?>>Phụ kiện</option>
+                            </select>
+                            <button class="ml-2 btn btn-success rounded-0" type="submit" style="height: 38px;">Lọc</button>
+                        </div>
+                    </form>
 
                 <!-- Table Starts Here -->
                 <table class="table  table-bordered">
                     <thead>
                         <tr>
                             <th class="text-center" scope="col">Ảnh</th>
-                            <th scope="col">Thông tin</th>
-                            <!-- <th scope="col">Loại</th>
-                            <th scope="col">Giá</th> -->
+                            <th scope="col">Tên</th>
+                            <!-- <th scope="col">Loại</th> -->
+                            <th scope="col">Giá</th>
                             <th scope="col">Mô tả</th>
                             <th scope="col">Ngày Tạo</th>
                             <th scope="col">Ngày sửa</th>
@@ -71,14 +90,9 @@ include_once __DIR__ . '/../partials/head.php';
                                         style="height: auto; width: 100px;">
                                 </td>
                                 <td class="align-middle">
-                                    <b>Tên:</b> <i> <?=htmlspecialchars($product->productName)?></i> <br> 
-                                    <b>Loại:</b> <i>
-                                    <?php
-                                        $categoryID = $product->categoryID;
-                                        $categories = [1 => "Áo", 2 => "Quần", 3 => "Phụ kiện"];
-                                        echo $categories[$categoryID] ?? "Không xác định";
-                                    ?></i> <br>
-                                    <b>Giá:</b> <i>$<?=htmlspecialchars($product->price)?></td> </i>
+                                    <i> <?=htmlspecialchars($product->productName)?></i> <br> 
+                                </td>
+                                <td class="align-middle"><i>$<?=htmlspecialchars($product->price)?></td> </i></td>
                                 <td class="align-middle"><?= empty($product->description) ? "Sản phẩm không có mô tả." : htmlspecialchars($product->description) ?></td>
                                 <td class="align-middle"><i><?=date("<b>H:i</b> <br> d/m/Y", strtotime($product->created_at))?></i></td>
                                 <td class="align-middle"><i><?=date("<b>H:i</b> <br> d/m/Y", strtotime($product->updated_at))?></i></td>
@@ -100,8 +114,25 @@ include_once __DIR__ . '/../partials/head.php';
                     </tbody>
                 </table>
                 <!-- Table Ends Here -->
-
+                <div id="delete-confirm" class="modal fade" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Vui lòng xác nhận</h4>
+                                <button type="button" class="close" data-dismiss="modal">
+                                    <span>&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">Bạn có thực sự muốn xóa sản phẩm?</div>
+                            <div class="modal-footer">
+                                <button type="button" data-dismiss="modal" class="btn btn-primary">Hủy</button>
+                                <button type="button" data-dismiss="modal" class="btn btn-danger" id="delete">Xóa</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 		        <!-- Pagination -->
+                <?php if (!isset($type) || $type == 0) :?>
                 <nav class="d-flex justify-content-center">
                     <ul class="pagination">
                         <li class="page-item<?= $paginator->getPrevPage() ? '' : ' disabled' ?>">
@@ -121,27 +152,12 @@ include_once __DIR__ . '/../partials/head.php';
                         </li>
                     </ul>
                 </nav>
+                <?php endif ?>
             </div>
         </div>
     </div>
 
-    <div id="delete-confirm" class="modal fade" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Vui lòng xác nhận</h4>
-                    <button type="button" class="close" data-dismiss="modal">
-                        <span>&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">Bạn có thực sự muốn xóa sản phẩm?</div>
-                <div class="modal-footer">
-                    <button type="button" data-dismiss="modal" class="btn btn-primary">Hủy</button>
-                    <button type="button" data-dismiss="modal" class="btn btn-danger" id="delete">Xóa</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    
 
     <?php include_once __DIR__ . '/../partials/footer.php' ?>
     <script>
