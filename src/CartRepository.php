@@ -78,11 +78,11 @@ class CartRepository
 
         } else {
             // Nếu chưa tồn tại, thêm mới
-            $statement = $this->pdo->prepare("INSERT INTO Cart (userID, productID, quantity) VALUES (:userID, :productID, 1)");
+            $statement = $this->pdo->prepare("INSERT INTO Cart (userID, productID, quantity) VALUES (:userID, :productID, :quantity)");
         
             $statement->bindParam(':userID', $userId);
             $statement->bindParam(':productID', $productId);
-            // $statement->bindParam(':quantity', $quantity);
+            $statement->bindParam(':quantity', $quantity);
         
             return $statement->execute();
         }
