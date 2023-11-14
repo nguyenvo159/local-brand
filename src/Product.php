@@ -198,4 +198,19 @@ class Product
         $statement = $this->db->prepare('DELETE FROM products WHERE id = :id');
         return $statement->execute(['id' => $this->id]);
     }
+
+    public function searchProduct($key): array
+    {
+        $products = [];
+        $statement = $this->db->prepare('SELECT * FROM products WHERE productName LIKE :key');
+        $statement->execute(['key' => "%$key%"]);
+
+        while ($row = $statement->fetch()) {
+            $product = new Product($this->db);
+            $product->fillFromDB($row);
+            $products[] = $product;
+        }
+
+        return $products;
+    }
 }

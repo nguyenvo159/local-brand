@@ -93,16 +93,16 @@ if (session_status() == PHP_SESSION_NONE) {
     </nav>
         <!-- Search -->
     <div id="search-input"
-        class="slideInDown  m-0 p-2 position-absolute row justify-content-center align-items-center w-100  bg-light d-none"
+        class="slideInDown shadow  m-0 p-2 position-absolute row justify-content-center align-items-center w-100  bg-light d-none"
         style="z-index: 999;">
         <h5 class="m-0">Tìm kiếm</h5>
-        <form class="w-50 p-2 rounded form-inline">
+        <form id="search-form" action="/search.php" method="get" class="w-50 p-2 rounded form-inline">
             <div class="d-flex w-100 justify-content-center align-items-center icon-nav">
-                <form >
-                    <input class="input_form form-control-sm mr-3 w-100 roun" name="search" type="search"
-                        placeholder="Vui lòng nhập sản phẩm bạn muốn tìm..." aria-label="Search">
-                    <i class="fa-solid fa-magnifying-glass fa-lg" type="submit"></i>
-                </form>
+                <input class="input_form form-control-sm mr-3 w-100 roun" name="key" type="search"
+                    placeholder="Vui lòng nhập sản phẩm bạn muốn tìm..." aria-label="Search">
+                <button type="submit" class="btn btn-link">
+                    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+                </button>
             </div>
         </form>
     </div>
