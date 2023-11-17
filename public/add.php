@@ -101,7 +101,7 @@ include_once __DIR__ . '/../partials/head.php';
                     </div>
 
                     <!-- Submit -->
-                    <button type="submit" name="submit" class="btn btn-primary">Add Contact</button>
+                    <button type="submit" name="submit" class="btn btn-primary">Thêm sản phẩm</button>
                 </form>
 
             </div>
