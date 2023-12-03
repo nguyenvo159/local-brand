@@ -1,5 +1,5 @@
 <?php
-use CT275\Labs\UserRepository;
+
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -59,6 +59,9 @@ if (session_status() == PHP_SESSION_NONE) {
                                     aria-haspopup="true" aria-expanded="false">' . $user->getLastName() . '</a>
                                     <div class="dropdown-menu mt-4 p-0 rounded-0 position-absolute" aria-labelledby="userDropdown" style="right: -10%; width:auto;">';
                             
+                            echo '<a class="p-1 pl-4 text-start dropdown-item" href="/profile.php">
+                                <i class=" mr-2 fa-solid fa-user"></i>Tài khoản</a>
+                                <div class="dropdown-divider m-0"></div>';
                             // Kiểm tra nếu userID là 1 thì hiển thị tùy chọn "Quản lý"
                             if ($user->getId() == 1) {
                                 echo '<a class="p-1 pl-4 text-start dropdown-item" href="/manager.php">
@@ -68,6 +71,7 @@ if (session_status() == PHP_SESSION_NONE) {
                                         <i class="mr-2 fa-solid fa-bars-progress"></i>Quản lý ĐH</a>
                                         <div class="dropdown-divider m-0"></div>';
                             }
+                            
                             echo '<a class="p-1 pl-4 text-start dropdown-item" href="/order.php">
                                         <i class=" mr-2 fa-solid fa-clipboard-list"></i>Đơn hàng</a>
                                         <div class="dropdown-divider m-0"></div>';

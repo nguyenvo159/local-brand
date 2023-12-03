@@ -29,13 +29,13 @@ include_once __DIR__ . '/../partials/head.php';
                 </ol>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img class="d-block w-100" src="https://amiri.com/cdn/shop/files/DESKTOP_-slideshow-banner_desktop_core.png" alt="First slide">
+                        <img style="height: 800px; width: 100%; object-fit: cover" class="d-block w-100" src="https://amiri.com/cdn/shop/files/DESKTOP_-slideshow-banner_desktop_core.png" alt="First slide">
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block w-100" src="https://amiri.com/cdn/shop/files/Slideshow-Banner_Desktop_AW23-Mens-6D.jpg" alt="Second slide">
+                        <img style="height: 800px; width: 100%; object-fit: cover" class="d-block w-100" src="https://amiri.com/cdn/shop/files/Slideshow-Banner_Desktop_AW23-Mens-6D.jpg" alt="Second slide">
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block w-100" src="https://amiri.com/cdn/shop/files/Slideshow-Banner_Desktop_AW23-Womens-1.jpg" alt="Third slide">
+                        <img style="height: 800px; width: 100%; object-fit: cover" class="d-block w-100" src="https://amiri.com/cdn/shop/files/Slideshow-Banner_Desktop_AW23-Womens-1.jpg" alt="Third slide">
                     </div>
                 </div>
                 <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">

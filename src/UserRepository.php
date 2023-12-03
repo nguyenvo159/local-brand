@@ -66,6 +66,31 @@ class UserRepository
 
         return password_verify($password, $user->getPassword());
     }
+
+    public function updatePassword(int $userID, string $newPassword): bool
+    {
+        // Băm mật khẩu mới
+        $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+
+        // Update the password in the database
+        $statement = $this->pdo->prepare("UPDATE users SET password = :password WHERE userID = :userID");
+        $statement->bindParam(':password', $hashedPassword);
+        $statement->bindParam(':userID', $userID);
+
+        return $statement->execute();
+    }
+    public function updateUserProfile(int $userID, string $firstName, string $lastName, string $email, string $phone): bool
+    {
+        $statement = $this->pdo->prepare("UPDATE users SET firstName = :firstName, lastName = :lastName, email = :email, phone = :phone WHERE userID = :userID");
+
+        $statement->bindParam(':firstName', $firstName);
+        $statement->bindParam(':lastName', $lastName);
+        $statement->bindParam(':email', $email);
+        $statement->bindParam(':phone', $phone);
+        $statement->bindParam(':userID', $userID);
+
+        return $statement->execute();
+    }
 }
 
 class User
